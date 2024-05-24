@@ -14,10 +14,11 @@ const HostelOwnerSchema = new Schema({
     },
     
     kyc_documents: {
-      id_proof: { type: String, 
+      hostel_certificate: { 
+        type: String, 
         required: true 
     },
-      address_proof: {
+      pan_card: {
          type: String, 
          required: true 
         },

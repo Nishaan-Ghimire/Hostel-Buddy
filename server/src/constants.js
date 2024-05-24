@@ -1,1 +1,1 @@
-export const DB_Name = 'StreamLine'
+export const DB_Name = 'HostelBuddy'
