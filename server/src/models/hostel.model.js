@@ -2,10 +2,10 @@ const HostelSchema = new Schema({
     owner_id: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        // required: true
     },
 
-    name: { 
+    hostelName: { 
         type: String, 
         required: true 
     },
@@ -15,18 +15,25 @@ const HostelSchema = new Schema({
         required: true 
     },
     totalRooms: {
-        type: Number
+        type: Number,
+        required: true 
     },
-    totalSeat: {
-        type: Number
+    totalSeats: {
+        type: Number,
+        required: true
+    },
+    packedSeats: {
+        type: Number,
+        required: true
     },
     location: {
-        type: { type: String,
-             default: 'Point' 
-            },
-        coordinates: { 
-            type: [Number], 
-            default: [0, 0] 
+        longitude: {
+            type: String,
+            required: true
+             },
+             latitude: { 
+            type: String,
+            required: true
         }
     },
     rooms: [

@@ -1,22 +1,41 @@
 import User from '../models/user.model.js'
+// import {HostelOwner} from '../models/hostelOwner.model.js';
 import crypto from 'crypto'
 
 
+// const generateAccessAndRefreshTokenForHostelOwner = async (userId) => {
+//     try {
+
+//         const hostelOwner = await HostelOwner.findById(userId);
+//         const accessToken = await hostelOwner.generateAccessToken();
+//         const refreshToken = await hostelOwner.generateRefreshToken();
+
+//         hostelOwner.refreshToken = refreshToken;
+//         await user.save({ validateBeforeSave: false });
+
+//         return { accessToken, refreshToken }
+//     } catch (error) {
+//         throw new ApiError(500, "Something went wrong while generating refresh token");
+//     }
+// }
+
+
 const generateAccessAndRefreshToken = async (userId) => {
-    try {
+  try {
 
-        const user = await User.findById(userId);
-        const accessToken = await user.generateAccessToken();
-        const refreshToken = await user.generateRefreshToken();
+      const user = await User.findById(userId);
+      const accessToken = await user.generateAccessToken();
+      const refreshToken = await user.generateRefreshToken();
 
-        user.refreshToken = refreshToken;
-        await user.save({ validateBeforeSave: false });
+      user.refreshToken = refreshToken;
+      await user.save({ validateBeforeSave: false });
 
-        return { accessToken, refreshToken }
-    } catch (error) {
-        throw new ApiError(500, "Something went wrong while generating refresh token");
-    }
+      return { accessToken, refreshToken }
+  } catch (error) {
+      throw new ApiError(500, "Something went wrong while generating refresh token");
+  }
 }
+
 
 
 const generateOTP = (length)=>{
@@ -40,4 +59,9 @@ function generateVerificationToken() {
     return {verificationToken,tokenTimestamp};
   }
 
-export {generateAccessAndRefreshToken,generateOTP,generateVerificationToken}
+export {
+  generateAccessAndRefreshToken,
+  generateOTP,
+  generateVerificationToken,
+  // generateAccessAndRefreshTokenForHostelOwner
+        }

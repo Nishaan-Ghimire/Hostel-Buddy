@@ -1,4 +1,5 @@
-import User from '../models/user.model.js';
+import {User} from '../models/user.model.js';
+import {Hostel} from '../models/hostel.model';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { CustomError } from '../utils/ApiError.js'
 import { generateAccessAndRefreshToken,generateOTP,generateVerificationToken } from '../utils/MinorMethods.js'
@@ -10,78 +11,93 @@ import jwt from 'jsonwebtoken'
 
 
 
-const registerController = asyncHandler(async (req, res) => {
 
+
+
+// Get the Major details for registering the hostel owner like Documents and location coordinates
+const HostelKYC = asyncHandler(async (req, res) => {
+        const { longitude, latitude } = req.body;
+        const pan_CardPath = req?.files?.panCard[0]?.path;
+        const hostel_certificatePath = req?.files?.hostel_certificate[0]?.path;
+    
+        // Check if files are provided
+        if (!pan_CardPath || !hostel_certificatePath) {
+            throw new CustomError(400, "Required documents not provided");
+        }
+    
         try {
-               
-                const { fullName, dob, username, email, phoneNo, password, college, company,jobStatus,collegelongitude, collegelatitude,fieldOfProfession } = req.body;
-                if (!fullName || !dob || !username || !email || !phoneNo || !password) {
-
-                        throw new CustomError(409, "All fields are necessary");
-                }
-              
-                if(jobStatus === 'Student'){
-                        if(!college){
-                                throw new CustomError(409, "All fields are necessary");
-                        }
-                }
-               
-                if(jobStatus === 'Working'){
-                        if(!company){
-                                throw new CustomError(409, "All fields are necessary");
-                        }
-                }
-                
-                const exisitingUser = await User.findOne({
-                        $or: [{ username }, { email }, { phoneNo }]
-                })
-                console.log(exisitingUser);
-                if (exisitingUser) {
-                        res
-                                .status(409)
-                                .json({ message: "User already exist" })
-                        // throw new CustomError(409, "This user already exist")
-                } else {
-
-        console.log("All fine till here")
-                        const newUser = await User.create({
-                                fullName,
-                                dob,
-                                username,
-                                email,
-                                phoneNo,
-                                password,
-                                jobStatus,
-                                fieldOfProfession,
-                                college: {
-                                        longitude:collegelongitude,
-                                        latitude:collegelatitude
-                                    }
-                                
-                        })
-               
-        const newUserId = newUser._id;
-                        const user = await User.findById(newUser._id).select("-password -refreshToken");
-
-                        if (!user) {
-                                throw new CustomError(500, "Something went wrong cannot create user")
-                        }
-
-                        return res
-                                .status(201)
-                                .json(new ApiResponse(201, user, "User registered successfully"))
-
-                }
-
-
+            // Upload documents to Cloudinary
+            const panCardUpload = await uploadOnCloudinary(pan_CardPath);
+            const hostelCertificateUpload = await uploadOnCloudinary(hostel_certificatePath);
+    
+            // Update user details
+            const user = await User.findByIdAndUpdate(req.user?._id, {
+                $set: {
+                    kyc_documents: {
+                        hostel_certificate: hostelCertificateUpload.url,
+                        pan_card: panCardUpload.url,
+                    },
+                    location_Coordinates: {
+                        type: 'Point',
+                        coordinates: [longitude, latitude],
+                    },
+                },
+            }, {
+                new: true,
+                select: '-password -refreshToken',
+            });
+    
+            if (!user) {
+                throw new CustomError(500, "Internal Server Error");
+            }
+    
+            res.status(200).json(new ApiResponse(200, user, "Uploaded Successfully"));
         } catch (error) {
-                throw new CustomError(500, `Internal server error ${error}`);
+            // Handle potential errors
+            throw new CustomError(500, error.message);
+        }
+    });
+    
+
+
+// Here we also have to send the verification request to admin for hostel verification after checking documents
+
+
+const HostelInformationUpdate = asyncHandler(async (req,res)=>{
+        const {totalRooms,totalSeats,packedSeats,address,hostelName,owner_id,longitude,latitude} = req.body;
+
+        if(!totalRooms || !totalSeats || !packedSeats || !address || !hostelName || !owner_id || !longitude || !latitude){
+                throw new CustomError(409, "All fields are necessary");
+        }
+        else{
+                const newHostel = await Hostel.create({
+                      totalRooms,
+                      totalSeats,
+                      packedSeats,
+                      address,
+                      hostelName,
+                      owner_id,
+                     
+
+                });
+
+                console.log(newHostel._id);
+           
+                const hostel = await User.findById(newHostel._id);
+
+                if (!hostel) {
+                        throw new CustomError(500, "Something went wrong cannot create user")
+                }
+
+                return res
+                        .status(201)
+                        .json(new ApiResponse(201, hostel, "Hostel registered successfully"))
+
         }
 
-
+        
 
 })
-
 
 
 
@@ -96,19 +112,19 @@ const loginController = asyncHandler(async (req, res) => {
                         throw new CustomError(409, "All fields are necessary");
                 }
 
-                const loginUser = await User.findOne({ email });
-                if (!loginUser) {
-                        throw new CustomError("User doesn't exist")
+                const loginHostelOwner = await HostelOwner.findOne({ email });
+                if (!loginHostelOwner) {
+                        throw new CustomError("This Account doesn't exist")
                 }
-                const isPasswordValid = await loginUser.isPasswordCorrect(password);
+                const isPasswordValid = await loginHostelOwner.isPasswordCorrect(password);
                 if (!isPasswordValid) {
                         throw new CustomError(401, "Incorrect Credentials")
                 }
 
 
-                const { accessToken, refreshToken } = await generateAccessAndRefreshToken(loginUser._id);
+                const { accessToken, refreshToken } = await generateAccessAndRefreshTokenForHostelOwner(loginHostelOwner._id);
 
-                const loggedInUser = await User.findById(loginUser._id).select("-password -refreshToken");
+                const loggedInHostelOwner = await HostelOwner.findById(loginHostelOwner._id).select("-password -refreshToken");
 
                 const options = {
                         httpOnly: true,
@@ -124,9 +140,9 @@ const loginController = asyncHandler(async (req, res) => {
                                 new ApiResponse(
                                         200,
                                         {
-                                                user: loggedInUser, accessToken, refreshToken
+                                                hostelOwner: loginHostelOwner, accessToken, refreshToken
                                         },
-                                        "User logged in Successfully"
+                                        "Hostel Owner logged in Successfully"
                                 )
                         )
 
@@ -140,7 +156,7 @@ const loginController = asyncHandler(async (req, res) => {
 
 const logoutController = asyncHandler(async (req, res) => {
 
-        await User.findByIdAndUpdate(req.user._id, {
+        await HostelOwner.findByIdAndUpdate(req.hostelOwner._id, {
                 $set: {
                         refreshToken: 1,
                 },
@@ -164,20 +180,18 @@ const logoutController = asyncHandler(async (req, res) => {
 });
 
 
-
-
 const changePasswordController = asyncHandler(async (req, res) => {
         const { oldPassword, newPassword } = req.body;
         // Verify Old password
-        const user = req.user;
-        const userDetail = await User.findById(user._id);
-        const ispasswordVerified = await userDetail.isPasswordCorrect(oldPassword);
+        const hostelOwner = req.hostelOwner;
+        const hostelOwnerDetail = await HostelOwner.findById(hostelOwner._id);
+        const ispasswordVerified = await hostelOwnerDetail.isPasswordCorrect(oldPassword);
         if (!ispasswordVerified) {
                 throw new CustomError(401, "Password is incorrect");
         }
 
-        userDetail.password = newPassword;
-        await userDetail.save({ validateBeforeSave: false });
+        hostelOwnerDetail.password = newPassword;
+        await hostelOwnerDetail.save({ validateBeforeSave: false });
 
         return res
                 .status(200)
@@ -188,14 +202,14 @@ const changePasswordController = asyncHandler(async (req, res) => {
 })
 
 
-const getUserDetail = asyncHandler(async (req, res) => {
-        const user = req.user;
+const getHostelOwnerDetail = asyncHandler(async (req, res) => {
+        const hostelOwner = req.hostelOwner;
         return res
                 .status(200)
-                .json(new ApiResponse(200, user));
+                .json(new ApiResponse(200, hostelOwner));
 })
 
-const updateAccountDetail = asyncHandler(async(req,res)=>{
+const HostelOwnerupdateAccountDetail = asyncHandler(async(req,res)=>{
         const {email, phoneNo, fullName, dob} = req.body;
         const updateFields = {};
 
@@ -210,8 +224,8 @@ const updateAccountDetail = asyncHandler(async(req,res)=>{
                 return res.status(400).json(new ApiResponse(400, null, "No details provided to update"));
         }
 
-        const user = await User.findByIdAndUpdate(
-                req.user?._id,
+        const user = await HostelOwner.findByIdAndUpdate(
+                req.hostelOwner?._id,
                 {$set: updateFields },
                 {new: true } 
         ).select("-password -refreshToken");
@@ -234,7 +248,7 @@ const uploadProfilePicture = asyncHandler(async (req, res) => {
 
         const profilePic = await uploadOnCloudinary(profilePicPath);
 
-        const user = await User.findByIdAndUpdate(req.user?._id, {
+        const hostelOwner = await HostelOwner.findByIdAndUpdate(req.user?._id, {
                 $set: {
                         profileImage: profilePic?.url
                 }
@@ -296,7 +310,7 @@ const getUserDetailInfo = asyncHandler(async (req,res)=>{
 
 
 
-const uploadCoverPicture = asyncHandler(async (req, res) => {
+const HostelOwneruploadCoverPicture = asyncHandler(async (req, res) => {
         const coverPicPath = req?.file?.path;
         if (!coverPicPath) {
                 throw new CustomError(400, "File not provided");
@@ -304,7 +318,7 @@ const uploadCoverPicture = asyncHandler(async (req, res) => {
 
         const coverPic = await uploadOnCloudinary(coverPicPath);
 
-        const user = await User.findByIdAndUpdate(req.user?._id, {
+        const hostelOwner = await User.findByIdAndUpdate(req.hostelOwner?._id, {
                 $set: {
                         coverImage: coverPic?.url
                 }
@@ -312,19 +326,19 @@ const uploadCoverPicture = asyncHandler(async (req, res) => {
                 new: true
         }).select("-password -refreshToken");
 
-        if (!user) {
+        if (!hostelOwner) {
                 throw new CustomError(500, "Internal Server Error");
         }
 
         res
                 .status(200)
-                .json(new ApiResponse(200, user,"Cover Picture Uploaded Successfully"))
+                .json(new ApiResponse(200, hostelOwner,"Cover Picture Uploaded Successfully"))
 
 })
 
 
 
-const refreshAccessToken = asyncHandler(async (req,res)=>{
+const HostelOwnerRefreshAccessToken = asyncHandler(async (req,res)=>{
         const oldrefreshToken = req.cookies.refreshToken || req.body.refreshToken;
        
         if(!oldrefreshToken){
@@ -336,8 +350,8 @@ const refreshAccessToken = asyncHandler(async (req,res)=>{
                 throw new CustomError(401,"Invalid Access Token")
         }
         
-        const user = await User.findById(decodedToken._id);
-        if(oldrefreshToken !== user.refreshToken){
+        const hostelOwner = await HostelOwner.findById(decodedToken._id);
+        if(oldrefreshToken !== hostelOwner.refreshToken){
                 console.log("Expired!!")
                 throw new CustomError(401,"Refresh Token has expired");
         }
@@ -347,7 +361,7 @@ const refreshAccessToken = asyncHandler(async (req,res)=>{
                 secure: true
         }
 
-        const {accessToken, refreshToken} = await generateAccessAndRefreshToken(user._id);
+        const {accessToken, refreshToken} = await generateAccessAndRefreshToken(hostelOwner._id);
 
         return res
         .status(200)
@@ -372,11 +386,11 @@ const refreshAccessToken = asyncHandler(async (req,res)=>{
 
 
 
-const sendOtp = asyncHandler(async (req,res)=>{
+const HostelOwnersendOtp = asyncHandler(async (req,res)=>{
         try {
                 const {verificationToken,tokenTimestamp} = generateVerificationToken();
                 const {otp,timestamp} = generateOTP(6);
-                const user = await User.findByIdAndUpdate(req?.user?._id,{
+                const hostelOwner = await HostelOwner.findByIdAndUpdate(req?.hostelOwner?._id,{
                 $set:{
                         otp,
                         otpTimestamp:timestamp,
@@ -387,13 +401,13 @@ const sendOtp = asyncHandler(async (req,res)=>{
                 new: true
         })
         
-        if(!user){
+        if(!hostelOwner){
                 throw new CustomError(500,"Internal Server Error");
         }
         
-        const template = generateEmailTemplate("Verify your account", "Please Enter the following OTP to verify your account. It expires in 5 minutes", user.username,verificationToken,otp);
+        const template = generateEmailTemplate("Verify your account", "Please Enter the following OTP to verify your account. It expires in 5 minutes", hostelOwner.fullName,verificationToken,otp);
         
-        const mailOtp = await sendEmail(user.email,"Verify your account",template)
+        const mailOtp = await sendEmail(hostelOwner.email,"Verify your account",template)
         
         console.log(mailOtp);
         if(!mailOtp){
@@ -413,23 +427,23 @@ const sendOtp = asyncHandler(async (req,res)=>{
 
 
 
-const verifyOTP = asyncHandler(async(req,res)=>{
+const HostelOwnerverifyOTP = asyncHandler(async(req,res)=>{
         try{
                 const {otp} = req.body;
                 if(!otp){
                         throw new CustomError(409, "OTP field is necessary");;
                 }
-                const user = await User.findById(req?.user?._id);
-                const OTPStatus = await user.isOTPValid(otp);
+                const hostelOwner = await HostelOwner.findById(req?.user?._id);
+                const OTPStatus = await hostelOwner.isOTPValid(otp);
                 if(!OTPStatus){
                         throw new CustomError(401,"OTP verification failed");
                 }
-                user.otp = 1;
-                user.otpTimestamp = 1;
-                user.token = 1;
-                user.tokenTimestamp = 1;
-                user.verified = true;
-                await user.save();
+                hostelOwner.otp = 1;
+                hostelOwner.otpTimestamp = 1;
+                hostelOwner.token = 1;
+                hostelOwner.tokenTimestamp = 1;
+                hostelOwner.verified = true;
+                await hostelOwner.save();
 
                 return res
                 .status(200)
@@ -441,53 +455,59 @@ const verifyOTP = asyncHandler(async(req,res)=>{
         }
 })
 
-const verifyToken = asyncHandler(async(req,res)=>{
+const HostelOwnerverifyToken = asyncHandler(async(req,res)=>{
         const token = req.params.token;
         if(!token){
                 throw new CustomError(409, "Token is necessary");
         }
         // console.log("middleware",req.user)
-        const user = await User.findById(req.user?._id);
+        const user = await HostelOwner.findById(req.user?._id);
      
-        if(!user){
-                throw new CustomError(409, "User not found");
+        if(!hostelOwner){
+                throw new CustomError(409, "Account not found");
         }
-        const tokenStatus = await user.isValidToken(token);
+        const tokenStatus = await hostelOwnerhostelOwner.isValidToken(token);
         if(!tokenStatus)
         {
                 throw new CustomError(401,"Invalid Token");
         }
 
-        user.otp = 1;
-        user.otpTimestamp = 1;
-        user.token = 1;
-        user.tokenTimestamp = 1;
-        user.verified = true;
-        await user.save();
+        hostelOwner.otp = 1;
+        hostelOwner.otpTimestamp = 1;
+        hostelOwner.token = 1;
+        hostelOwner.tokenTimestamp = 1;
+        hostelOwner.verified = true;
+        await hostelOwner.save();
 
         return res
         .status(200)
-        .json(new ApiResponse(200,{message:"User verified Successfully"}));
+        .json(new ApiResponse(200,{message:"Account verified Successfully"}));
 
 })
 
 
 
 
+
+
+
+
 export {
-        registerController, 
-        loginController, 
-        logoutController, 
-        changePasswordController, 
-        getUserDetail,
-        updateAccountDetail,
-        uploadProfilePicture,
-        uploadCoverPicture,
-        refreshAccessToken,
-        sendOtp,
-        verifyOTP,
-        verifyToken
-}
+        HostelOwnerPage_1_RegistrationController,
+        HostelOwnerPage_2_RegistrationController,
+        HostelOwnerPage_3_RegistrationController,
+        HostelOwnerloginController,
+        HostelOwnerlogoutController,
+        HostelOwnerchangePasswordController,
+        HostelOwnerchangePasswordController,
+        getHostelOwnerDetail,
+        HostelOwnerupdateAccountDetail,
+        HostelOwneruploadProfilePicture,
+        HostelOwneruploadCoverPicture,
+        HostelOwnerRefreshAccessToken,
+        HostelOwnersendOtp,
+        HostelOwnerverifyOTP,
+        HostelOwnerverifyToken
 
 
-
+        }

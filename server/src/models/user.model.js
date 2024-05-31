@@ -41,16 +41,25 @@ const userSchema = new Schema(
             max: 70,
             min: 12
         },
-        jobstatus:{
+        jobStatus:{
             type: String,
             enum: ["Student","Working","None"],
         },
         college:{
+           longitude:{
+            type: String,   
+           },
+           latitude:{
             type: String,
-            
+           }
         },
         company:{
-            type: String
+            longitude:{
+                type: String,
+               },
+               latitude:{
+                type: String,     
+               }
         },
         fieldOfProfession:{
             type: String,
@@ -61,27 +70,41 @@ const userSchema = new Schema(
             default: "profile"
 
         },
-        coverImage:{
-            type: String, //Cloudinary Url
-            default: "Cover"
-        },
         
         password:{
             type: String,
             required: [true,'Password is required'] 
         },
+
+        HostelName: {
+            type: String,
+         
+        },
+
+        kyc_documents: {
+            hostel_certificate: { 
+              type: String, 
+              required: true 
+          },
+            pan_card: {
+               type: String, 
+               required: true 
+              },  
+          
+          },
+
+
         refreshToken:{
             type: String,
         }
         ,
         role:{
             type:String,
-            enum:["User","Admin"],
+            enum:["User","Admin","HostelOwner"],
             default: "User"
         },
-        verified:{
-            type:Boolean,
-            default: false
+        hostel_associated: {
+            type: Schema.Types.ObjectId
         },
         otp: {
             type: String,
@@ -95,8 +118,24 @@ const userSchema = new Schema(
         tokenTimestamp:{
             type: Date,
         },
+        verified:{
+            type: Boolean,
+            default: false
+        },
+        location_Coordinates: {
+            type: {
+                type: String, // It can be 'Point' for specific geospatial data
+                enum: ['Point'],
+               
+            },
+            coordinates: {
+                type: [Number],
+            }
+        },
         
-    
+        hostelOwned:{
+            type: String,
+        }
     },
     {
         timeseries: true,
@@ -110,6 +149,7 @@ userSchema.methods.generateRefreshToken = generateRefreshToken;
 userSchema.methods.isOTPValid = isOTPValid;
 userSchema.methods.isValidToken = isValidToken;
 
+userSchema.index({ Location_Coordinates: '2dsphere' }); // Adding a 2dsphere index
 
 const User = mongoose.model('User',userSchema);
 export default User

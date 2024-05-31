@@ -86,6 +86,30 @@ async function generateAccessToken() {
     )
 }
 
+
+async function generateAccessTokenForHostelOwner() {
+    return jwt.sign({
+        _id: this._id,
+        email: this.email,
+        hostelOwner: this.hostelOwner,
+        fullName: this.fullName,
+        role: this.role,
+    },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+            expiresIn: process.env.ACCESS_TOKEN_EXPIRY
+        }
+    )
+}
+
+
+
+
+
+
+
+
+
 async function generateRefreshToken(){
     return jwt.sign({
         _id: this._id,
@@ -99,4 +123,4 @@ async function generateRefreshToken(){
     )
 }
 
-export {generateAccessToken, generateRefreshToken,isPasswordCorrect,preSaveMiddleware,isOTPValid,isValidToken}
+export {generateAccessTokenForHostelOwner,generateAccessToken, generateRefreshToken,isPasswordCorrect,preSaveMiddleware,isOTPValid,isValidToken}

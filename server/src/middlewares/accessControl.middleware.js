@@ -3,7 +3,7 @@ import {CustomError} from '../utils/ApiError.js'
 import { asyncHandler } from "../utils/asyncHandler.js";
 import jwt from "jsonwebtoken"
 
-export const accessControl = asyncHandler(async(req,res,next)=>{
+export const userAccessControl = asyncHandler(async(req,res,next)=>{
  try {
        const accessToken = req.cookies.accessToken || req.header("Authorization")?.replace("Bearer ","");
        if(!accessToken){

@@ -12,27 +12,28 @@ import {  registerController,
     verifyOTP,
     verifyToken,
     uploadCoverPicture } from '../controllers/user.controller.js';
-import {authMiddleware} from '../middlewares/auth.middleware.js'
+import {userAuthMiddleware} from '../middlewares/auth.middleware.js'
 const router = Router();
 
-router.route('/register').post(registerController);
-router.route('/login').post(loginController);
-router.route('/refreshToken').patch(refreshAccessToken);
+
+router.route('/register').post(registerController); // Done
+router.route('/login').post(loginController); // Done
+router.route('/refreshToken').patch(refreshAccessToken); // Done
 
 // Secured Routed (permission level user)
-router.route('/logout').post(authMiddleware,logoutController)
-router.route('/sendOTP').post(authMiddleware,sendOtp);
-router.route('/verifyOTP').post(authMiddleware,verifyOTP);
+router.route('/logout').post(userAuthMiddleware,logoutController) // Done
+router.route('/sendOTP').post(userAuthMiddleware,sendOtp); // Done
+router.route('/verifyOTP').post(userAuthMiddleware,verifyOTP); //Done
 
 
-router.route('/verify/:token').get(authMiddleware,verifyToken);
+router.route('/verify/:token').get(userAuthMiddleware,verifyToken); //Done
 
 
-router.route('/getUser').get(authMiddleware,getUserDetail);
-router.route('/changePassword').patch(authMiddleware,changePasswordController);
-router.route('/updateAccountDetail').patch(authMiddleware,updateAccountDetail);
-router.route('/uploadProfileImage').patch(authMiddleware,upload.single('profilePic'),uploadProfilePicture);
-router.route('/uploadCoverImage').patch(authMiddleware,upload.single('coverPic'),uploadCoverPicture);
+router.route('/getUser').get(userAuthMiddleware,getUserDetail); // Done
+router.route('/changePassword').patch(userAuthMiddleware,changePasswordController); //Done
+router.route('/updateAccountDetail').patch(userAuthMiddleware,updateAccountDetail); // Done
+router.route('/uploadProfileImage').patch(userAuthMiddleware,upload.single('profilePic'),uploadProfilePicture);
+// router.route('/uploadCoverImage').patch(userAuthMiddleware,upload.single('coverPic'),uploadCoverPicture);
 
 
 

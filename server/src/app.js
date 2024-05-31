@@ -34,9 +34,11 @@ app.use(cookieParser());
 
 // importing Routes
 import userRoutes from './routes/user.routes.js'
+// import vendorRoutes from './routes/hostelOwner.routes'
 
 // Setting the routes
 app.use('/v1/users/',userRoutes);
+// app.use('/v1/vendor/',vendorRoutes);
 
 
 export { app }
