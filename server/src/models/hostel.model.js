@@ -22,6 +22,21 @@ const HostelSchema = new Schema({
         type: Number,
         required: true
     },
+    oneSitter:{
+        type: Number
+    },
+    twoSitter:{
+        type: Number
+    },
+    threeSitter:{
+        type: Number
+    },
+    fourSitter:{
+        type: Number
+    },
+    fiveSitter:{
+        type: Number
+    },
     packedSeats: {
         type: Number,
         required: true
@@ -45,14 +60,9 @@ const HostelSchema = new Schema({
         type: Boolean, 
         default: false 
     },
-    created_at: { 
-        type: Date, 
-        default: Date.now 
-    },
-    updated_at: { 
-        type: Date, 
-        default: Date.now 
-    }
+   
+}, {
+    timeseries: true,
 });
 
 HostelSchema.index({ location: '2dsphere' });

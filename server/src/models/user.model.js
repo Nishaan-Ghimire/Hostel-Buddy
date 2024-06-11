@@ -84,11 +84,11 @@ const userSchema = new Schema(
         kyc_documents: {
             hostel_certificate: { 
               type: String, 
-              required: true 
+           
           },
             pan_card: {
                type: String, 
-               required: true 
+      
               },  
           
           },

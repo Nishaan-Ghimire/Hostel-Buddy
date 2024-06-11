@@ -14,7 +14,7 @@ const BookingSchema = new Schema({
          ref: 'Room',
           required: true 
         },
-    bed_id: { 
+    seat_id: { 
         type: Schema.Types.ObjectId,
          ref: 'Bed',
           required: true 
@@ -24,15 +24,11 @@ const BookingSchema = new Schema({
          enum: ['pending', 'accepted', 'rejected', 'cancelled'], 
          default: 'pending' 
         },
-    created_at: { 
-        type: Date, 
-        default: Date.now 
-    },
-    updated_at: { 
-        type: Date, 
-        default: Date.now 
-    }
-  });
+    
+  },
+    {
+        timeseries: true,
+    });
   
   module.exports = mongoose.model('Booking', BookingSchema);
   
