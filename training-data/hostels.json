@@ -1,0 +1,465 @@
+[{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f1e",
+    "hostelName": "Green Valley Hostel",
+    "address": "123 Green Street, Kathmandu",
+    "totalRooms": 50,
+    "totalSeats": 150,
+    "oneSitter": 10,
+    "twoSitter": 20,
+    "threeSitter": 10,
+    "fourSitter": 5,
+    "fiveSitter": 5,
+    "packedSeats": 140,
+    "location": {
+        "longitude": "85.3240",
+        "latitude": "27.7172"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f2a" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f2b" }
+    ],
+    "verified": true
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f1f",
+    "hostelName": "Sunrise Hostel",
+    "address": "456 Sunrise Avenue, Pokhara",
+    "totalRooms": 30,
+    "totalSeats": 90,
+    "oneSitter": 5,
+    "twoSitter": 10,
+    "threeSitter": 10,
+    "fourSitter": 5,
+    "fiveSitter": 0,
+    "packedSeats": 85,
+    "location": {
+        "longitude": "83.9856",
+        "latitude": "28.2096"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f2c" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f2d" }
+    ],
+    "verified": false
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f20",
+    "hostelName": "Mountain View Hostel",
+    "address": "789 Mountain Road, Lalitpur",
+    "totalRooms": 40,
+    "totalSeats": 120,
+    "oneSitter": 15,
+    "twoSitter": 15,
+    "threeSitter": 5,
+    "fourSitter": 3,
+    "fiveSitter": 2,
+    "packedSeats": 110,
+    "location": {
+        "longitude": "85.3241",
+        "latitude": "27.6667"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f2e" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f2f" }
+    ],
+    "verified": true
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f21",
+    "hostelName": "Lakeside Hostel",
+    "address": "101 Lakeside Drive, Chitwan",
+    "totalRooms": 20,
+    "totalSeats": 60,
+    "oneSitter": 2,
+    "twoSitter": 8,
+    "threeSitter": 5,
+    "fourSitter": 3,
+    "fiveSitter": 2,
+    "packedSeats": 55,
+    "location": {
+        "longitude": "84.4121",
+        "latitude": "27.5291"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f30" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f31" }
+    ],
+    "verified": false
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f22",
+    "hostelName": "City Center Hostel",
+    "address": "202 Center Plaza, Bhaktapur",
+    "totalRooms": 25,
+    "totalSeats": 75,
+    "oneSitter": 5,
+    "twoSitter": 10,
+    "threeSitter": 5,
+    "fourSitter": 3,
+    "fiveSitter": 2,
+    "packedSeats": 70,
+    "location": {
+        "longitude": "85.4298",
+        "latitude": "27.6710"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f32" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f33" }
+    ],
+    "verified": true
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f23",
+    "hostelName": "Riverside Hostel",
+    "address": "303 Riverside Lane, Biratnagar",
+    "totalRooms": 35,
+    "totalSeats": 105,
+    "oneSitter": 5,
+    "twoSitter": 10,
+    "threeSitter": 10,
+    "fourSitter": 5,
+    "fiveSitter": 5,
+    "packedSeats": 100,
+    "location": {
+        "longitude": "87.2750",
+        "latitude": "26.4526"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f34" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f35" }
+    ],
+    "verified": false
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f24",
+    "hostelName": "Everest Base Camp Hostel",
+    "address": "104 Mountain Road, Solukhumbu",
+    "totalRooms": 15,
+    "totalSeats": 45,
+    "oneSitter": 5,
+    "twoSitter": 5,
+    "threeSitter": 3,
+    "fourSitter": 2,
+    "fiveSitter": 0,
+    "packedSeats": 40,
+    "location": {
+        "longitude": "86.9236",
+        "latitude": "27.9881"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f36" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f37" }
+    ],
+    "verified": true
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f25",
+    "hostelName": "Heritage Hostel",
+    "address": "205 Temple Street, Bhaktapur",
+    "totalRooms": 20,
+    "totalSeats": 60,
+    "oneSitter": 4,
+    "twoSitter": 8,
+    "threeSitter": 4,
+    "fourSitter": 2,
+    "fiveSitter": 2,
+    "packedSeats": 58,
+    "location": {
+        "longitude": "85.4283",
+        "latitude": "27.6722"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f38" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f39" }
+    ],
+    "verified": false
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f26",
+    "hostelName": "Sunset View Hostel",
+    "address": "506 Sunset Boulevard, Dharan",
+    "totalRooms": 28,
+    "totalSeats": 84,
+    "oneSitter": 8,
+    "twoSitter": 10,
+    "threeSitter": 5,
+    "fourSitter": 3,
+    "fiveSitter": 2,
+    "packedSeats": 80,
+    "location": {
+        "longitude": "87.2785",
+        "latitude": "26.8124"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f3a" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f3b" }
+    ],
+    "verified": true
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f27",
+    "hostelName": "Jungle Safari Hostel",
+    "address": "709 Safari Road, Chitwan",
+    "totalRooms": 18,
+    "totalSeats": 54,
+    "oneSitter": 3,
+    "twoSitter": 6,
+    "threeSitter": 5,
+    "fourSitter": 2,
+    "fiveSitter": 2,
+    "packedSeats": 52,
+    "location": {
+        "longitude": "84.4330",
+        "latitude": "27.5295"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f3c" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f3d" }
+    ],
+    "verified": false
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f28",
+    "hostelName": "City Lights Hostel",
+    "address": "101 Neon Street, Birgunj",
+    "totalRooms": 22,
+    "totalSeats": 66,
+    "oneSitter": 4,
+    "twoSitter": 9,
+    "threeSitter": 4,
+    "fourSitter": 3,
+    "fiveSitter": 2,
+    "packedSeats": 62,
+    "location": {
+        "longitude": "84.8672",
+        "latitude": "27.0000"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f3e" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f3f" }
+    ],
+    "verified": true
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f29",
+    "hostelName": "Hilltop Hostel",
+    "address": "202 Summit Road, Dhulikhel",
+    "totalRooms": 12,
+    "totalSeats": 36,
+    "oneSitter": 2,
+    "twoSitter": 4,
+    "threeSitter": 3,
+    "fourSitter": 2,
+    "fiveSitter": 1,
+    "packedSeats": 35,
+    "location": {
+        "longitude": "85.5517",
+        "latitude": "27.6197"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f40" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f41" }
+    ],
+    "verified": false
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f2a",
+    "hostelName": "Garden View Hostel",
+    "address": "303 Flower Street, Hetauda",
+    "totalRooms": 16,
+    "totalSeats": 48,
+    "oneSitter": 4,
+    "twoSitter": 6,
+    "threeSitter": 4,
+    "fourSitter": 1,
+    "fiveSitter": 1,
+    "packedSeats": 45,
+    "location": {
+        "longitude": "85.0322",
+        "latitude": "27.4122"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f42" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f43" }
+    ],
+    "verified": true
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f2b",
+    "hostelName": "Riverside Retreat Hostel",
+    "address": "404 Riverside Road, Janakpur",
+    "totalRooms": 14,
+    "totalSeats": 42,
+    "oneSitter": 3,
+    "twoSitter": 5,
+    "threeSitter": 4,
+    "fourSitter": 1,
+    "fiveSitter": 1,
+    "packedSeats": 40,
+    "location": {
+        "longitude": "85.9224",
+        "latitude": "26.7288"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f44" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f45" }
+    ],
+    "verified": false
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f2c",
+    "hostelName": "Seaside Hostel",
+    "address": "505 Beach Road, Kakarbhitta",
+    "totalRooms": 10,
+    "totalSeats": 30,
+    "oneSitter": 2,
+    "twoSitter": 4,
+    "threeSitter": 2,
+    "fourSitter": 1,
+    "fiveSitter": 1,
+    "packedSeats": 28,
+    "location": {
+        "longitude": "88.0935",
+        "latitude": "26.6371"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f46" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f47" }
+    ],
+    "verified": true
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f2d",
+    "hostelName": "Central Hub Hostel",
+    "address": "606 Hub Street, Itahari",
+    "totalRooms": 24,
+    "totalSeats": 72,
+    "oneSitter": 5,
+    "twoSitter": 9,
+    "threeSitter": 6,
+    "fourSitter": 2,
+    "fiveSitter": 2,
+    "packedSeats": 70,
+    "location": {
+        "longitude": "87.2800",
+        "latitude": "26.6591"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f48" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f49" }
+    ],
+    "verified": false
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f2e",
+    "hostelName": "Tranquil Haven Hostel",
+    "address": "707 Serenity Lane, Lumbini",
+    "totalRooms": 12,
+    "totalSeats": 36,
+    "oneSitter": 3,
+    "twoSitter": 6,
+    "threeSitter": 2,
+    "fourSitter": 1,
+    "fiveSitter": 0,
+    "packedSeats": 33,
+    "location": {
+        "longitude": "83.4641",
+        "latitude": "27.4840"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f4a" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f4b" }
+    ],
+    "verified": true
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f2f",
+    "hostelName": "Mystic Meadows Hostel",
+    "address": "808 Enchantment Avenue, Bardia",
+    "totalRooms": 18,
+    "totalSeats": 54,
+    "oneSitter": 4,
+    "twoSitter": 8,
+    "threeSitter": 4,
+    "fourSitter": 2,
+    "fiveSitter": 0,
+    "packedSeats": 50,
+    "location": {
+        "longitude": "81.3226",
+        "latitude": "28.3780"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f4c" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f4d" }
+    ],
+    "verified": false
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f30",
+    "hostelName": "Urban Oasis Hostel",
+    "address": "909 Metropolis Street, Birgunj",
+    "totalRooms": 20,
+    "totalSeats": 60,
+    "oneSitter": 5,
+    "twoSitter": 10,
+    "threeSitter": 3,
+    "fourSitter": 1,
+    "fiveSitter": 1,
+    "packedSeats": 58,
+    "location": {
+        "longitude": "84.8568",
+        "latitude": "27.0111"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f4e" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f4f" }
+    ],
+    "verified": true
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f31",
+    "hostelName": "Vintage Vista Hostel",
+    "address": "101 Retro Road, Butwal",
+    "totalRooms": 16,
+    "totalSeats": 48,
+    "oneSitter": 3,
+    "twoSitter": 8,
+    "threeSitter": 3,
+    "fourSitter": 1,
+    "fiveSitter": 1,
+    "packedSeats": 45,
+    "location": {
+        "longitude": "83.4582",
+        "latitude": "27.7000"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f50" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f51" }
+    ],
+    "verified": false
+},
+{
+    "owner_id": "60c72b2f9b1d8c4f1d8e0f32",
+    "hostelName": "Dreamland Dormitory",
+    "address": "303 Fantasy Lane, Dang",
+    "totalRooms": 14,
+    "totalSeats": 42,
+    "oneSitter": 2,
+    "twoSitter": 6,
+    "threeSitter": 4,
+    "fourSitter": 1,
+    "fiveSitter": 1,
+    "packedSeats": 40,
+    "location": {
+        "longitude": "82.2973",
+        "latitude": "27.9937"
+    },
+    "rooms": [
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f52" },
+        { "room_id": "60c72b2f9b1d8c4f1d8e0f53" }
+    ],
+    "verified": true
+}
+
+
+]

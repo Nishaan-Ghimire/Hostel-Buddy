@@ -34,11 +34,11 @@ app.use(cookieParser());
 
 // importing Routes
 import userRoutes from './routes/user.routes.js'
-// import vendorRoutes from './routes/hostelOwner.routes'
+import searchRoutes from './routes/search.routes.js'
 
 // Setting the routes
 app.use('/v1/users/',userRoutes);
-// app.use('/v1/vendor/',vendorRoutes);
+app.use('/v1/vendor/',searchRoutes);
 
 
 export { app }

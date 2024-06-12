@@ -1,0 +1,302 @@
+[
+    {
+        "username": "john_doe",
+        "dob": "1998-05-15",
+        "phoneNo": "+977-9876543210",
+        "email": "john@example.com",
+        "fullName": "John Doe",
+        "age": 23,
+        "jobStatus": "Student",
+        "college": {
+            "longitude": "85.3240",
+            "latitude": "27.7172"
+        },
+        "company": null,
+        "fieldOfProfession": "IT",
+        "profileImage": "profile",
+        "password": "password123",
+        "refreshToken": null,
+        "role": "Student",
+        "hostel_associated": null,
+        "otp": null,
+        "otpTimestamp": null,
+        "token": null,
+        "tokenTimestamp": null,
+        "verified": false,
+        "location_Coordinates": {
+            "type": "Point",
+            "coordinates": [85.3240, 27.7172]
+        },
+        "hostelOwned": null
+    },
+    {
+        "username": "jane_smith",
+        "dob": "1999-08-20",
+        "phoneNo": "+977-9876543211",
+        "email": "jane@example.com",
+        "fullName": "Jane Smith",
+        "age": 22,
+        "jobStatus": "Student",
+        "college": {
+            "longitude": "83.9856",
+            "latitude": "28.2096"
+        },
+        "company": null,
+        "fieldOfProfession": "Engineering",
+        "profileImage": "profile",
+        "password": "password456",
+        "refreshToken": null,
+        "role": "Student",
+        "hostel_associated": null,
+        "otp": null,
+        "otpTimestamp": null,
+        "token": null,
+        "tokenTimestamp": null,
+        "verified": false,
+        "location_Coordinates": {
+            "type": "Point",
+            "coordinates": [83.9856, 28.2096]
+        },
+        "hostelOwned": null
+    },
+    {
+        "username": "emma_watson",
+        "dob": "1990-04-15",
+        "phoneNo": "+977-9876543212",
+        "email": "emma@example.com",
+        "fullName": "Emma Watson",
+        "age": 31,
+        "jobStatus": "Student",
+        "college": {
+            "longitude": "85.3241",
+            "latitude": "27.6667"
+        },
+        "company": null,
+        "fieldOfProfession": "Arts",
+        "profileImage": "profile",
+        "password": "password789",
+        "refreshToken": null,
+        "role": "Student",
+        "hostel_associated": null,
+        "otp": null,
+        "otpTimestamp": null,
+        "token": null,
+        "tokenTimestamp": null,
+        "verified": false,
+        "location_Coordinates": {
+            "type": "Point",
+            "coordinates": [85.3241, 27.6667]
+        },
+        "hostelOwned": null
+    },
+    {
+        "username": "sam_smith",
+        "dob": "1995-09-20",
+        "phoneNo": "+977-9876543213",
+        "email": "sam@example.com",
+        "fullName": "Sam Smith",
+        "age": 26,
+        "jobStatus": "Student",
+        "college": {
+            "longitude": "84.4121",
+            "latitude": "27.5291"
+        },
+        "company": null,
+        "fieldOfProfession": "Marketing",
+        "profileImage": "profile",
+        "password": "passwordABC",
+        "refreshToken": null,
+        "role": "Student",
+        "hostel_associated": null,
+        "otp": null,
+        "otpTimestamp": null,
+        "token": null,
+        "tokenTimestamp": null,
+        "verified": false,
+        "location_Coordinates": {
+            "type": "Point",
+            "coordinates": [84.4121, 27.5291]
+        },
+        "hostelOwned": null
+    },
+    {
+        "username": "alex_johnson",
+        "dob": "1998-12-05",
+        "phoneNo": "+977-9876543214",
+        "email": "alex@example.com",
+        "fullName": "Alex Johnson",
+        "age": 23,
+        "jobStatus": "Student",
+        "college": {
+            "longitude": "85.4298",
+            "latitude": "27.6710"
+        },
+        "company": null,
+        "fieldOfProfession": "Engineering",
+        "profileImage": "profile",
+        "password": "passwordDEF",
+        "refreshToken": null,
+        "role": "Student",
+        "hostel_associated": null,
+        "otp": null,
+        "otpTimestamp": null,
+        "token": null,
+        "tokenTimestamp": null,
+        "verified": false,
+        "location_Coordinates": {
+            "type": "Point",
+            "coordinates": [85.4298, 27.6710]
+        },
+        "hostelOwned": null
+    },
+    {
+        "username": "john_doe",
+        "dob": "1998-05-15",
+        "phoneNo": "+977-9876543210",
+        "email": "john@example.com",
+        "fullName": "John Doe",
+        "age": 23,
+        "jobStatus": "Student",
+        "college": {
+            "longitude": "85.3240",
+            "latitude": "27.7172"
+        },
+        "company": null,
+        "fieldOfProfession": "IT",
+        "profileImage": "profile",
+        "password": "password123",
+        "refreshToken": null,
+        "role": "Student",
+        "hostel_associated": null,
+        "otp": null,
+        "otpTimestamp": null,
+        "token": null,
+        "tokenTimestamp": null,
+        "verified": false,
+        "location_Coordinates": {
+            "type": "Point",
+            "coordinates": [85.3240, 27.7172]
+        },
+        "hostelOwned": null
+    },
+    {
+        "username": "jane_smith",
+        "dob": "1999-08-20",
+        "phoneNo": "+977-9876543211",
+        "email": "jane@example.com",
+        "fullName": "Jane Smith",
+        "age": 22,
+        "jobStatus": "Student",
+        "college": {
+            "longitude": "83.9856",
+            "latitude": "28.2096"
+        },
+        "company": null,
+        "fieldOfProfession": "Engineering",
+        "profileImage": "profile",
+        "password": "password456",
+        "refreshToken": null,
+        "role": "Student",
+        "hostel_associated": null,
+        "otp": null,
+        "otpTimestamp": null,
+        "token": null,
+        "tokenTimestamp": null,
+        "verified": false,
+        "location_Coordinates": {
+            "type": "Point",
+            "coordinates": [83.9856, 28.2096]
+        },
+        "hostelOwned": null
+    },
+    {
+        "username": "lisa_jones",
+        "dob": "1997-07-10",
+        "phoneNo": "+977-9876543215",
+        "email": "lisa@example.com",
+        "fullName": "Lisa Jones",
+        "age": 24,
+        "jobStatus": "Student",
+        "college": {
+            "longitude": "83.9845",
+            "latitude": "28.2098"
+        },
+        "company": null,
+        "fieldOfProfession": "Medical",
+        "profileImage": "profile",
+        "password": "passwordGHI",
+        "refreshToken": null,
+        "role": "Student",
+        "hostel_associated": null,
+        "otp": null,
+        "otpTimestamp": null,
+        "token": null,
+        "tokenTimestamp": null,
+        "verified": false,
+        "location_Coordinates": {
+            "type": "Point",
+            "coordinates": [83.9845, 28.2098]
+        },
+        "hostelOwned": null
+    },
+    {
+        "username": "michael_davis",
+        "dob": "1996-03-25",
+        "phoneNo": "+977-9876543216",
+        "email": "michael@example.com",
+        "fullName": "Michael Davis",
+        "age": 25,
+        "jobStatus": "Student",
+        "college": {
+            "longitude": "85.0324",
+            "latitude": "27.4123"
+        },
+        "company": null,
+        "fieldOfProfession": "Business",
+        "profileImage": "profile",
+        "password": "passwordJKL",
+        "refreshToken": null,
+        "role": "Student",
+        "hostel_associated": null,
+        "otp": null,
+        "otpTimestamp": null,
+        "token": null,
+        "tokenTimestamp": null,
+        "verified": false,
+        "location_Coordinates": {
+            "type": "Point",
+            "coordinates": [85.0324, 27.4123]
+        },
+        "hostelOwned": null
+    },
+    {
+        "username": "sara_brown",
+        "dob": "1999-11-18",
+        "phoneNo": "+977-9876543217",
+        "email": "sara@example.com",
+        "fullName": "Sara Brown",
+        "age": 22,
+        "jobStatus": "Student",
+        "college": {
+            "longitude": "85.3255",
+            "latitude": "27.7175"
+        },
+        "company": null,
+        "fieldOfProfession": "Psychology",
+        "profileImage": "profile",
+        "password": "passwordMNO",
+        "refreshToken": null,
+        "role": "Student",
+        "hostel_associated": null,
+        "otp": null,
+        "otpTimestamp": null,
+        "token": null,
+        "tokenTimestamp": null,
+        "verified": false,
+        "location_Coordinates": {
+            "type": "Point",
+            "coordinates": [85.3255, 27.7175]
+        },
+        "hostelOwned": null
+    }
+]
