@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:propertyfinder/vendor/app/modules/managerooms/manage_rooms_controller.dart';
 
-import '../../data/models/rating_model.dart';
+import '../../data/models/rating/rating_model.dart';
 import '../notification/view/notification_view.dart';
 List<RatingModel> rmodel=[
 RatingModel('DS Aaire', '3.5', 'Good'),
@@ -21,6 +21,8 @@ RatingModel('Sandeep Lamichane ', '5', 'Best'),
 
       return Scaffold(
 body: Column(children: [
+
+
 
 SizedBox(height: 40,),
 
@@ -42,8 +44,8 @@ Get.back();
 
 Container(
   height: 200,width: double.infinity,
-  child: Image.network(controller.items.image),),
-  Text(controller.items.name,style: TextStyle(fontWeight: FontWeight.bold),),
+  child: Image.network(controller.items.image!),),
+  Text(controller.items.name!,style: TextStyle(fontWeight: FontWeight.bold),),
   Text('${controller.items.isAvailable} / ${controller.items.location}'),
  
   Text('${controller.items.noOfBeds} / ${controller.items.price}'),

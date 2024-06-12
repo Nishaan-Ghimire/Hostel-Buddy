@@ -45,7 +45,8 @@ controller.selectedWidget.value=controller.bodyList[0];
     
     return
 Scaffold(
-  body: Obx(() => controller.bodyList[controller.selectedCase.value]
+  body: Obx(
+    () => controller.bodyList[controller.selectedCase.value]
   //controller.selectedWidget.value
   ),
 
@@ -63,11 +64,12 @@ Scaffold(
     bottomNavigationBar: AnimatedBottomNavigationBar.builder(
       itemCount: iconList.length,
     tabBuilder: (int index,bool isActive){
-      print(isActive);
+   //   print(isActive);
       controller.active.value=
       //true;
       isActive;
-        return Obx(() => Icon(
+        return Obx(
+          () => Icon(
           iconList[index],
           size: 24,
           color: controller.active.value==true?Colors.red:Colors.black

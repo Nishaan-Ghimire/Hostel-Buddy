@@ -52,7 +52,7 @@ class SignInView extends GetView<SignInController> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                      //  controller: controller.username.value,
+                        controller: controller.email,
                                       //    validator: ZValidator.emailValidator,
                       //  focusNode: controller.usernameFocus,
                         textInputAction: TextInputAction.next,
@@ -94,7 +94,7 @@ class SignInView extends GetView<SignInController> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                      //  controller: controller.username.value,
+                        controller: controller.password,
                                       //    validator: ZValidator.emailValidator,
                       //  focusNode: controller.usernameFocus,
                         textInputAction: TextInputAction.next,
@@ -135,7 +135,8 @@ class SignInView extends GetView<SignInController> {
                         children: [
                           GestureDetector(onTap: (){
       //  Get.toNamed(Routes.HOME);
-        Get.toNamed(Routes.HOME);
+      controller.signInProcess();
+      //  Get.toNamed(Routes.HOME);
                           },
                             child: Container(decoration: BoxDecoration(color: Colors.red,
                             borderRadius: BorderRadius.circular(10)

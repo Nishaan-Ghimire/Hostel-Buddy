@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:propertyfinder/user/app/modules/chat_page/view/individual_chat.dart';
 import 'package:propertyfinder/user/app/modules/home/controller/home_controller.dart';
 
 class Message extends GetView<HomeController>{
@@ -19,10 +20,14 @@ class Message extends GetView<HomeController>{
       body: ListView.builder(
         itemCount: 10, // Replace with the actual number of messages
         itemBuilder: (context, index) {
-          return MessageWidget(
-            sender: 'Sender Name',
-            message: 'Message text',
-            timestamp: '12:34 PM',
+          return InkWell(onTap: (){
+            Get.to(IndividualChat());
+          },
+            child: MessageWidget(
+              sender: 'Sender Name',
+              message: 'Message text',
+              timestamp: '12:34 PM',
+            ),
           );
         },
       ),

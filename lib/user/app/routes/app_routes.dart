@@ -8,7 +8,7 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const vendorHome = _Paths.vendorHome;
   static const manageHome = _Paths.manageHome;
-
+static const message=_Paths.message;
 
   static const SIGNIN = _Paths.SIGNIN;
   static const SIGNUP = _Paths.SIGNUP;
@@ -26,7 +26,7 @@ abstract class Routes {
     static const PHONEVERIFICATION = _Paths.PHONEVERIFICATION;
  static const FORGOTPASSWORD = _Paths.FORGOTPASSWORD;
   static const ENTEREMAIL = _Paths.ENTEREMAIL;
-
+static const HOSTELDETAIL=_Paths.HOSTELDETAIL;
  // static const PROFILE = _Paths.PROFILE;
 }
 
@@ -36,6 +36,7 @@ abstract class _Paths {
  static const HOME = '/home';
  static const vendorHome='/vendorHome';
  static const manageHome='/manageHome';
+ static const message='/message';
   static const SIGNIN = '/signin';
   static const SIGNUP = '/signup';
   static const FORGET_PASSWORD = '/forget-password';
@@ -53,6 +54,7 @@ abstract class _Paths {
         static const PHONEVERIFICATION="/phoneVerification";
       static const FORGOTPASSWORD="/forgotPassword";
   static const ENTEREMAIL="/enterEmail";
+  static const HOSTELDETAIL='/hostelDetail';
   //static const ROLE= '/signuprole';
    //static const PROFILE = '/profile';
 }

@@ -1,0 +1,122 @@
+[
+    {
+        "_id": "6662a4eb5ae77b020a83cde4",
+        "hostelId": "h1",
+        "name": "Hostel A",
+        "location": "Location A",
+        "rent": 1000,
+        "isAvailable": true,
+        "imageUrl": "https://images.unsplash.com/photo-1509021436665-8f07dbf5bf1d",
+        "rooms": [
+            {
+                "roomId": "r1",
+                "seats": [
+                    {
+                        "seatId": "s1",
+                        "_id": "6662a4eb5ae77b020a83cde6"
+                    },
+                    {
+                        "seatId": "s2",
+                        "_id": "6662a4eb5ae77b020a83cde7"
+                    }
+                ],
+                "_id": "6662a4eb5ae77b020a83cde5"
+            },
+            {
+                "roomId": "r2",
+                "seats": [
+                    {
+                        "seatId": "s3",
+                        "_id": "6662a4eb5ae77b020a83cde9"
+                    },
+                    {
+                        "seatId": "s4",
+                        "_id": "6662a4eb5ae77b020a83cdea"
+                    }
+                ],
+                "_id": "6662a4eb5ae77b020a83cde8"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": "6662a4eb5ae77b020a83cdeb",
+        "hostelId": "h2",
+        "name": "Hostel B",
+        "location": "Location B",
+        "rent": 1200,
+        "isAvailable": false,
+        "imageUrl": "https://images.unsplash.com/photo-1493809842364-78817add7ffb",
+        "rooms": [
+            {
+                "roomId": "r3",
+                "seats": [
+                    {
+                        "seatId": "s5",
+                        "_id": "6662a4eb5ae77b020a83cded"
+                    },
+                    {
+                        "seatId": "s6",
+                        "_id": "6662a4eb5ae77b020a83cdee"
+                    }
+                ],
+                "_id": "6662a4eb5ae77b020a83cdec"
+            },
+            {
+                "roomId": "r4",
+                "seats": [
+                    {
+                        "seatId": "s7",
+                        "_id": "6662a4eb5ae77b020a83cdf0"
+                    },
+                    {
+                        "seatId": "s8",
+                        "_id": "6662a4eb5ae77b020a83cdf1"
+                    }
+                ],
+                "_id": "6662a4eb5ae77b020a83cdef"
+            }
+        ],
+        "__v": 0
+    },
+    {
+        "_id": "6662a4eb5ae77b020a83cdf2",
+        "hostelId": "h3",
+        "name": "Hostel C",
+        "location": "Location C",
+        "rent": 800,
+        "isAvailable": true,
+        "imageUrl": "https://images.unsplash.com/photo-1560448074-e82d939f9e10",
+        "rooms": [
+            {
+                "roomId": "r5",
+                "seats": [
+                    {
+                        "seatId": "s9",
+                        "_id": "6662a4eb5ae77b020a83cdf4"
+                    },
+                    {
+                        "seatId": "s10",
+                        "_id": "6662a4eb5ae77b020a83cdf5"
+                    }
+                ],
+                "_id": "6662a4eb5ae77b020a83cdf3"
+            },
+            {
+                "roomId": "r6",
+                "seats": [
+                    {
+                        "seatId": "s11",
+                        "_id": "6662a4eb5ae77b020a83cdf7"
+                    },
+                    {
+                        "seatId": "s12",
+                        "_id": "6662a4eb5ae77b020a83cdf8"
+                    }
+                ],
+                "_id": "6662a4eb5ae77b020a83cdf6"
+            }
+        ],
+        "__v": 0
+    }
+]

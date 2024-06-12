@@ -9,37 +9,58 @@ class HostelCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(
-               minWidth: 100,
-           minHeight: 150,
-           maxWidth: 200,
-           maxHeight:isSmall==true?150: 450,
+    return 
+    
+  //  ConstrainedBox(
+  //    constraints: BoxConstraints(
+  //             minWidth: 100,
+  //          minHeight: 30,
+           
+  //         // 150,
+  //         maxWidth: 200,
+  //         maxHeight:40
+  //         //isSmall==true?90: 450,
               
-              ),
-                child: Column(
-                  children: [
-                      Container(
-                    height:isSmall==true?70: 126,
-                    width:isSmall==true?160: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    clipBehavior: Clip.antiAlias,
-                    child: Image.network(
-                      hostels.image,
-                      fit: BoxFit.cover,height: 130,
-                    ),
-                  ),
+  //            ),
+  //              child: 
                 
-                   Text(hostels.name),
-                   Text(hostels.location),
-                   Text(hostels.price),
-                   Text(hostels.isAvailable,style: TextStyle(color: Colors.green),),
-                   Text('${hostels.floor} / ${hostels.noOfBeds}'),
-                 //  Text()
-                  ],
-                ),
-              );
+                
+                Container(
+                  height:isSmall?150: 260,
+               //color: Colors.red,
+                  child: Column(
+                    children: [
+                        Container(
+                          height:
+                   isSmall?     60:120,
+width: 140,
+                        // 130,
+                         // height:130 ,
+                    //  height:isSmall==true?70: 126,
+                    //  width:isSmall==true?160: 150,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      clipBehavior: Clip.antiAlias,
+                      child: Image.network(
+                        hostels.image!,
+                       fit: BoxFit.fitWidth,
+                     //   height: 50,
+                        //height: 130,
+                      ),
+                    ),
+                  
+                     Expanded(child: Text(hostels.name!)),
+                      Expanded(child: Text(hostels.location!)),
+                      Expanded(child: Text(hostels.price!)),
+                      Expanded(child: Text(hostels.isAvailable!,style: TextStyle(color: Colors.green),)),
+                     // Expanded(child: Text('${hostels.floor} / ${hostels.noOfBeds}')
+                    //  ),
+                   //  Text()
+                    ],
+                  ),
+                );
+                //,
+            //  );
   }
 }

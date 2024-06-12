@@ -1,10 +1,11 @@
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:propertyfinder/user/app/data/hostel_model.dart';
-import 'package:propertyfinder/user/app/modules/add_property/view/add_property.dart';
+import 'package:propertyfinder/user/app/data/repo/auth_repo.dart';
+import 'package:propertyfinder/user/app/routes/app_routes.dart';
+import 'package:propertyfinder/vendor/app/modules/add_property/view/add_property.dart';
 import 'package:propertyfinder/user/app/modules/home/controller/home_controller.dart';
 import 'package:propertyfinder/user/app/modules/home/view/widget/headeroptions.dart';
 import 'package:propertyfinder/user/app/modules/home/view/widget/hostel_card.dart';
@@ -39,6 +40,7 @@ class DashBoardView extends GetView<HomeController>{
       
    
       body: ListView(
+        shrinkWrap: true,
       children: [
         Container(height: 250,
         child: Stack(children: [
@@ -87,7 +89,7 @@ class DashBoardView extends GetView<HomeController>{
         
             decoration: InputDecoration(
         
-              hintText: 'Enter city name'
+              hintText: ' Enter city name'
         
             ),
         
@@ -121,7 +123,7 @@ class DashBoardView extends GetView<HomeController>{
         ],),
         
         ),
-      HeaderOption(),
+     // HeaderOption(),
       //  Container(height: 58,child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       //   children: [
       //   Column(
@@ -182,30 +184,55 @@ class DashBoardView extends GetView<HomeController>{
          SingleChildScrollView(
        child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-         children: [SizedBox(height: 5,),
+         children: [
+          SizedBox(height: 5,),
       Padding(
       padding: const EdgeInsets.all(8.0),
       child:   Text('Recent',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
       ),
           SizedBox(height: 10,),
       Container(height: 150,
-      child:   ListView.builder(scrollDirection: Axis.horizontal,itemCount:hostel.length ,
+      child:   
+      
+      Obx(()=>ListView.builder(scrollDirection: Axis.horizontal,itemCount:
+      controller.recentData.value.length,
+      //hostel.length ,
       itemBuilder: (context,index){
-      var hostels=hostel[index];
+      var hostels=controller.recentData.value[index];
+      
+      //hostel[index];
       return Padding(
       padding: const EdgeInsets.all(8.0),
       child:   InkWell(
-        onTap: (){
-      Get.to(PropertyDetails());
+        onTap: ()async{
+
+controller.getProfile();
+      Get.toNamed(Routes.HOSTELDETAIL,arguments: {
+              'roomId':hostels?.hostelId ,
+              'roomNo': hostels?.roomNo,
+            });
         },
-        child: HostelCard(hostels: hostels,isSmall: true,)),
+        child: HostelCard(hostels: HostelModel(
+hostels?.name,hostels?.photo,hostels?.city,
+hostels?.isAvailable.toString() ,
+hostels?.costPerMonth.toString(),'',''
+
+
+        //   controller.recentData, image,
+        //  location, isAvailable, price, 
+        //  floor, noOfBeds
+         ),isSmall: true,)),
       );
       
       },
       
       
+      ))
+      
+      
+      
       ),
-      ),
+      
       
       SizedBox(height: 20,),
              Text(' Suggested For You ',style: TextStyle(
@@ -214,60 +241,105 @@ class DashBoardView extends GetView<HomeController>{
           
           ),),
          SizedBox(height: 20,),
-           GridView.builder(
-            shrinkWrap: true,
-             physics: NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        //  Center(
+        //    child: Wrap(alignment: WrapAlignment.center,
+        //    runAlignment: WrapAlignment.center,
+        //    crossAxisAlignment: WrapCrossAlignment.center,
+        //    spacing: 10.0, // gap between adjacent chips
+        //     runSpacing: 10.0,          
+        //     children:List.generate(hostel.length, (index) {
+        //       return Padding(
+        //         padding: const EdgeInsets.all(8.0),
+        //         child: HostelCard(hostels: hostel[index]),
+        //       );
+        //     })
            
-              crossAxisCount:Get.width>500?3:2,
-              // 2, 
-              crossAxisSpacing: 10,
+        //    ,),
+        //  )
+
+
+
+
+  //height: 300,
+Obx(()=> GridView.builder(
+  physics: NeverScrollableScrollPhysics(),
+    itemCount:
+    controller.suggestedData.length,
+    // hostel.length,
+    shrinkWrap: true,
+    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2), 
+  itemBuilder: (context,i){
+  
+    return HostelCard(hostels: 
+   // hostel[i]
+    HostelModel(controller.suggestedData[i]!.name, 
+    controller.suggestedData[i]!.photo, controller.suggestedData[i]!.city,
+     controller.suggestedData[i]!.isAvailable.toString(), 
+     controller.suggestedData[i]!.costPerMonth.toString(),
+      '', '')
+    );
+  })),
+
+
+
+          //  Container(height: 500,
+          //    child: GridView.builder(
+          //     shrinkWrap: true,
               
-              //10,
-              mainAxisSpacing:2
-              // 10// Number of columns in the grid
-            ),
-            itemCount: hostel.length,
-            itemBuilder: (context,index){
-              var hostels=hostel[index];
-              return InkWell(
-                onTap: (){
-                  Get.to(PropertyDetails());
-                },
-                child: HostelCard(hostels: hostels));
-              
-          //     ConstrainedBox(constraints: BoxConstraints(
-          //      minWidth: 100,
-          //  minHeight: 50,
-          //  maxWidth: 200,
-          //  maxHeight: 450,
+          //      physics: NeverScrollableScrollPhysics(),
+          //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+             
+          //       crossAxisCount:Get.width>500?3:2,
+          //       // 2, 
+          //       crossAxisSpacing: 5,
+                
+          //       //10,
+          //       mainAxisSpacing:2
+          //       // 10// Number of columns in the grid
+          //     ),
+          //     itemCount: hostel.length,
+          //     itemBuilder: (context,index){
+          //       var hostels=hostel[index];
+          //       return InkWell(
+          //         onTap: (){
+          //           Get.to(PropertyDetails());
+          //         },
+          //         child:
+          //          HostelCard(hostels: hostels));
+          //         },
               
           //     ),
-          //       child: Column(
-          //         children: [
-          //             Container(
-          //           height: 126,
-          //           width: 150,
-          //           decoration: BoxDecoration(
-          //             borderRadius: BorderRadius.circular(8),
-          //           ),
-          //           clipBehavior: Clip.antiAlias,
-          //           child: Image.network(
-          //             hostels.image,
-          //             fit: BoxFit.cover,height: 130,
-          //           ),
-          //         ),
+          //  ),
+                        //    ConstrainedBox(constraints: BoxConstraints(
+                        //     minWidth: 100,
+                        // minHeight: 50,
+                        // maxWidth: 200,
+                        // maxHeight: 450,
                 
-          //          Text(hostels.name),
-          //          Text(hostels.location),
-          //          Text(hostels.price),
-          //          Text(hostels.isAvailable,style: TextStyle(color: Colors.green),)
-          //         ],
-          //       ),
-          //     );
-            },
+                        //    ),
+                        //      child: Column(
+                        //        children: [
+                        //            Container(
+                        //          height: 126,
+                        //          width: 150,
+                        //          decoration: BoxDecoration(
+                        //            borderRadius: BorderRadius.circular(8),
+                        //          ),
+                        //          clipBehavior: Clip.antiAlias,
+                        //          child: Image.network(
+                        //            hostels.image,
+                        //            fit: BoxFit.cover,height: 130,
+                        //          ),
+                        //        ),
+                  
+                        //         Text(hostels.name),
+                        //         Text(hostels.location),
+                        //         Text(hostels.price),
+                        //         Text(hostels.isAvailable,style: TextStyle(color: Colors.green),)
+                        //        ],
+                        //      ),
+                        //    );
             
-            ),
          ],
        ),
          ),

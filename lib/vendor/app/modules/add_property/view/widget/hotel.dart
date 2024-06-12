@@ -6,12 +6,20 @@ class AddHotel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  ListView(children: [
+    return  Column(
+   //   padding: EdgeInsets.all(12),
+      children: [
      
       
       SizedBox(height: 10,),
       
       Text('Enter name of hostel / flat / property'),
+      
+      TextFormField(),
+        Text('Enter floor '),
+      
+      TextFormField(),
+        Text('Enter available beds / rooms '),
       
       TextFormField(),
       
@@ -22,6 +30,7 @@ class AddHotel extends StatelessWidget {
       Text('Enter location '),
       
       TextFormField(),
+
       
       Text('Enter cost per month'),
       

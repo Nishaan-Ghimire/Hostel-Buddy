@@ -78,20 +78,20 @@ child: Center(child: Column(
                           ),
 
                           // Obx(() =>
-                         Text(
-                              "David Harly",
+                         Obx(()=>Text(
+                         controller.profile.value.data.fullName??     "",
                               style: const TextStyle(
                                   color: Color(0xff00182D),
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold),
-                            ),
-                          
+                            ),)
+                          ,
 
                           //    ),
-                          Text(
-                            "david@gmail.com",
+                        Obx(()=>  Text(
+                        controller.profile.value.data.email??    "david@gmail.com",
                             style: const TextStyle(color: Color(0xff747474)),
-                          ),
+                          )),
 ],),),
 
 ),

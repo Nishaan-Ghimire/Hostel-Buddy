@@ -1,6 +1,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:propertyfinder/user/app/data/model/hostel_datail/hostel_detail.dart';
+import 'package:propertyfinder/user/app/modules/chat_page/binding/chat_binding.dart';
+import 'package:propertyfinder/user/app/modules/chat_page/view/individual_chat.dart';
 import 'package:propertyfinder/user/app/modules/forgot_password/binding/forgot_password_binding.dart';
 import 'package:propertyfinder/user/app/modules/forgot_password/view/enter_email_view.dart';
 import 'package:propertyfinder/user/app/modules/forgot_password/view/forgot_password_view.dart';
@@ -14,8 +17,8 @@ import 'package:propertyfinder/vendor/app/modules/managerooms/manage_room_bindin
 import 'package:propertyfinder/vendor/app/modules/managerooms/managerooms_view.dart';
 
 import '../../../vendor/app/modules/home/vendor_home_view.dart';
-import '../modules/add_property/binding/add_property_binding.dart';
-import '../modules/add_property/view/add_property.dart';
+import '../../../vendor/app/modules/add_property/binding/add_property_binding.dart';
+import '../../../vendor/app/modules/add_property/view/add_property.dart';
 import '../modules/change_password/binding/change_password_binding.dart';
 import '../modules/change_password/view/change_password.dart';
 import '../modules/edit_profile/binding/edit_profile_binding.dart';
@@ -60,6 +63,16 @@ class AppPages {
       page: () =>  HomeView(),
       binding: HomeBinding(),
     ),
+     GetPage(
+      name: _Paths.SIGNUP,
+      page: () =>  SignUpView(),
+      binding: SignupBinding(),
+    ),
+       GetPage(
+      name: _Paths.SIGNIN,
+      page: () =>  SignInView(),
+      binding: SigninBinding(),
+    ),
 GetPage(name: 
 _Paths.VENDORHOME, page:()=> HomeViewVendor(),
 binding:HomeBindingVendor()
@@ -67,8 +80,13 @@ binding:HomeBindingVendor()
 ),
 GetPage(name: _Paths.manageHome, page: ()=>ManageRoomView(),
 binding: ManageRoomBinding()
-)
+),
+GetPage(name: _Paths.MESSAGE, page:()=> IndividualChat(),
+binding: ChatBinding()),
+GetPage(name: _Paths.HOSTELDETAIL, page:()=> PropertyDetails(),
 
+binding: PropertyBinding()
+)
     // GetPage(
     //   name: _Paths.MESSAGE,
     //   page: () =>  Message(),
@@ -185,6 +203,7 @@ static const manageHome='/manageHome';
   static const CHANGE_PASSWORD = '/change-password';
   static const SIGNIN = '/signin';
   static const SIGNUP = '/signup';
+  // static const MESSAGE='message';
  
   //static const CHANGE_PASSWORD = '/change-password';
   static const WELCOME = '/welcome';
@@ -199,5 +218,6 @@ static const manageHome='/manageHome';
             static const PHONEVERIFICATION="/phoneVerification";
       static const FORGOTPASSWORD="/forgotPassword";
        static const ENTEREMAIL="/enterEmail";
+       static const HOSTELDETAIL='/hostelDetail';
    //static const PROFILE = '/profile';
 }

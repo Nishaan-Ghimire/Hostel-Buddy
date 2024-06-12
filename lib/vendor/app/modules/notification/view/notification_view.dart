@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../data/models/bookingrequestmodel.dart';
+import '../../../data/models/booking/bookingrequestmodel.dart';
 List<BookingRequestModel>bookingRequ=[
 
 BookingRequestModel(

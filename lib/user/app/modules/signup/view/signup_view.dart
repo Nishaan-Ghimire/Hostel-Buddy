@@ -57,6 +57,7 @@ SingleChildScrollView(
 //           child: Text('Sign up owner / vendor'),
 //         ),
 //         ),
+
      Align(alignment:Alignment.topLeft,
                       child: Padding(
                         padding: const EdgeInsets.only(left:8.0),
@@ -70,7 +71,7 @@ SingleChildScrollView(
             Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                      //  controller: controller.username.value,
+                        controller: controller.fullName,
                                       //    validator: ZValidator.emailValidator,
                       //  focusNode: controller.usernameFocus,
                         textInputAction: TextInputAction.next,
@@ -106,7 +107,7 @@ SingleChildScrollView(
                           Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                      //  controller: controller.username.value,
+                        controller: controller.emailAddress,
                                       //    validator: ZValidator.emailValidator,
                       //  focusNode: controller.usernameFocus,
                         textInputAction: TextInputAction.next,
@@ -142,7 +143,7 @@ SingleChildScrollView(
                           Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                      //  controller: controller.username.value,
+                        controller: controller.password,
                                       //    validator: ZValidator.emailValidator,
                       //  focusNode: controller.usernameFocus,
                         textInputAction: TextInputAction.next,
@@ -178,7 +179,43 @@ SingleChildScrollView(
             Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
-                      //  controller: controller.username.value,
+                        controller: controller.mobileNumber,
+                                      //    validator: ZValidator.emailValidator,
+                      //  focusNode: controller.usernameFocus,
+                        textInputAction: TextInputAction.next,
+                        onFieldSubmitted: (term) {
+                         // controller.usernameFocus.unfocus();
+                       //   FocusScope.of(context).requestFocus(controller.passwordFocus);
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+                          // prefixIcon: Icon(
+                          //   FontAwesomeIcons.envelope,
+                          //   size: 14,
+                          //   color: Get.theme.primaryColor.withOpacity(0.25),
+                          // ),
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                          ),
+                        ),
+                      ),
+                    ),
+ Align(alignment:Alignment.topLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left:8.0),
+                        child: Text('username'
+                                    //    ZTextString.zEmail,
+                        //  style: Get.textTheme.labelLarge!
+                         //     .copyWith(color: ZColors.inseadOfDarkBlack),
+                        ),
+                      ),
+                    ),
+                          Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: controller.userName,
                                       //    validator: ZValidator.emailValidator,
                       //  focusNode: controller.usernameFocus,
                         textInputAction: TextInputAction.next,
@@ -202,10 +239,158 @@ SingleChildScrollView(
                       ),
                     ),
 
+
+ Align(alignment:Alignment.topLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left:8.0),
+                        child: Text('DOB'
+                                    //    ZTextString.zEmail,
+                        //  style: Get.textTheme.labelLarge!
+                         //     .copyWith(color: ZColors.inseadOfDarkBlack),
+                        ),
+                      ),
+                    ),
+                          Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: controller.dob,
+                                      //    validator: ZValidator.emailValidator,
+                      //  focusNode: controller.usernameFocus,
+                        textInputAction: TextInputAction.next,
+                        onFieldSubmitted: (term) {
+                         // controller.usernameFocus.unfocus();
+                       //   FocusScope.of(context).requestFocus(controller.passwordFocus);
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+                          // prefixIcon: Icon(
+                          //   FontAwesomeIcons.envelope,
+                          //   size: 14,
+                          //   color: Get.theme.primaryColor.withOpacity(0.25),
+                          // ),
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                          ),
+                        ),
+                      ),
+                    ),
+ Align(alignment:Alignment.topLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left:8.0),
+                        child: Text('Job Status'
+                                    //    ZTextString.zEmail,
+                        //  style: Get.textTheme.labelLarge!
+                         //     .copyWith(color: ZColors.inseadOfDarkBlack),
+                        ),
+                      ),
+                    ),
+                          Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                      controller: controller.jobStatus,
+                                      //    validator: ZValidator.emailValidator,
+                      //  focusNode: controller.usernameFocus,
+                        textInputAction: TextInputAction.next,
+                        onFieldSubmitted: (term) {
+                         // controller.usernameFocus.unfocus();
+                       //   FocusScope.of(context).requestFocus(controller.passwordFocus);
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+                          // prefixIcon: Icon(
+                          //   FontAwesomeIcons.envelope,
+                          //   size: 14,
+                          //   color: Get.theme.primaryColor.withOpacity(0.25),
+                          // ),
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                          ),
+                        ),
+                      ),
+                    ),
+
+ Align(alignment:Alignment.topLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left:8.0),
+                        child: Text('Profession'
+                                    //    ZTextString.zEmail,
+                        //  style: Get.textTheme.labelLarge!
+                         //     .copyWith(color: ZColors.inseadOfDarkBlack),
+                        ),
+                      ),
+                    ),
+                          Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: controller.profession,
+                                      //    validator: ZValidator.emailValidator,
+                      //  focusNode: controller.usernameFocus,
+                        textInputAction: TextInputAction.next,
+                        onFieldSubmitted: (term) {
+                         // controller.usernameFocus.unfocus();
+                       //   FocusScope.of(context).requestFocus(controller.passwordFocus);
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+                          // prefixIcon: Icon(
+                          //   FontAwesomeIcons.envelope,
+                          //   size: 14,
+                          //   color: Get.theme.primaryColor.withOpacity(0.25),
+                          // ),
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                          ),
+                        ),
+                      ),
+                    ),
+ Align(alignment:Alignment.topLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left:8.0),
+                        child: Text('College Name'
+                                    //    ZTextString.zEmail,
+                        //  style: Get.textTheme.labelLarge!
+                         //     .copyWith(color: ZColors.inseadOfDarkBlack),
+                        ),
+                      ),
+                    ),
+                          Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: TextFormField(
+                        controller: controller.collegename,
+                                      //    validator: ZValidator.emailValidator,
+                      //  focusNode: controller.usernameFocus,
+                        textInputAction: TextInputAction.next,
+                        onFieldSubmitted: (term) {
+                         // controller.usernameFocus.unfocus();
+                       //   FocusScope.of(context).requestFocus(controller.passwordFocus);
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          contentPadding:
+                              const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+                          // prefixIcon: Icon(
+                          //   FontAwesomeIcons.envelope,
+                          //   size: 14,
+                          //   color: Get.theme.primaryColor.withOpacity(0.25),
+                          // ),
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                          ),
+                        ),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: GestureDetector(onTap: (){
-                    Get.to(EmailVerification());
+          //          Get.to(EmailVerification());
+controller.signupProcess();
+
                                },
                                  child: Container(height: 40,width: Get.width,
                                  
