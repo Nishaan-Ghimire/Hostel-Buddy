@@ -8,6 +8,7 @@ import {uploadOnCloudinary} from '../utils/cloudinary.js'
 import {sendEmail} from '../utils/mail.js'
 import {generateEmailTemplate} from '../utils/mailTemplate.js'
 import jwt from 'jsonwebtoken'
+import { trackEvent } from '../utils/Analytics.js';
 
 
 
@@ -88,14 +89,14 @@ const HostelInformationUpdate = asyncHandler(async (req,res)=>{
                 if (!hostel) {
                         throw new CustomError(500, "Something went wrong cannot create user")
                 }
-
+                trackEvent(owner_id,"Hostel Owner","Registration");
                 return res
                         .status(201)
                         .json(new ApiResponse(201, hostel, "Hostel registered successfully"))
 
         }
 
-        
+
 
 })
 
@@ -131,7 +132,7 @@ const loginController = asyncHandler(async (req, res) => {
                         secure: true
                 }
                 console.log(accessToken)
-
+                trackEvent(loginHostelOwner._id,"Hostel Owner","Login");
                 return res
                         .status(200)
                         .cookie("accessToken", accessToken, options)

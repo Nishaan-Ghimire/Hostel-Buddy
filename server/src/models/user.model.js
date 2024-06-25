@@ -92,7 +92,11 @@ const userSchema = new Schema(
               },  
           
           },
-
+          kyc_status: {
+            type: String,
+            enum:['Verified','Not Verified'],
+            default: 'Not Verified'
+          },
 
         refreshToken:{
             type: String,
