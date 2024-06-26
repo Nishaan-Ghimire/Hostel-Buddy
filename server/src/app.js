@@ -37,12 +37,14 @@ import userRoutes from './routes/user.routes.js'
 import searchRoutes from './routes/search.routes.js'
 import vendorRoutes from './routes/hostelOwner.routes.js'
 import Review from './routes/review.routes.js'
+import Utils from './routes/utils.routes.js'
 
 // Setting the routes
 app.use('/v1/users/',userRoutes);
 app.use('/v1/search/',searchRoutes);
 app.use('/v1/vendor/',vendorRoutes);
 app.use('/v1/review/',Review);
+app.use('/v1/utils/',Utils);
 
 
 export { app }
