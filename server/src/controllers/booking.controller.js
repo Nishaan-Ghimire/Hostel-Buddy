@@ -271,7 +271,24 @@ exports.deleteBooking = async (req, res) => {
 };
 
 
+
+
+
+const getMyAcceptedBooking = asyncHandler(async (req,res)=>{
+    const { username } = req.body;
+
+    const acceptBookings = await Booking.find({ username: username, status: 'accepted' });
+
+    if (!acceptBookings) {
+        return res.status(404).json({ message: 'User not found' });
+      }
+
+     res.status(200).json({acceptBookings}) 
+
+})
+
 export {
     createBooking,
-    AcceptBooking
+    AcceptBooking,
+    getMyAcceptedBooking
 }

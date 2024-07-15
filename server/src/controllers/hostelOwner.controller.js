@@ -1,5 +1,5 @@
-import {User} from '../models/user.model.js';
-import {Hostel} from '../models/hostel.model';
+import User from '../models/user.model.js';
+import {Hostel} from '../models/hostel.model.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { CustomError } from '../utils/ApiError.js'
 import { generateAccessAndRefreshToken,generateOTP,generateVerificationToken } from '../utils/MinorMethods.js'
@@ -494,21 +494,20 @@ const HostelOwnerverifyToken = asyncHandler(async(req,res)=>{
 
 
 export {
-        HostelOwnerPage_1_RegistrationController,
-        HostelOwnerPage_2_RegistrationController,
-        HostelOwnerPage_3_RegistrationController,
-        HostelOwnerloginController,
-        HostelOwnerlogoutController,
-        HostelOwnerchangePasswordController,
-        HostelOwnerchangePasswordController,
+        HostelKYC,
+        HostelInformationUpdate,
+        loginController,
+        logoutController,
+        changePasswordController,
         getHostelOwnerDetail,
         HostelOwnerupdateAccountDetail,
-        HostelOwneruploadProfilePicture,
+        uploadProfilePicture,
         HostelOwneruploadCoverPicture,
         HostelOwnerRefreshAccessToken,
         HostelOwnersendOtp,
         HostelOwnerverifyOTP,
-        HostelOwnerverifyToken
+        HostelOwnerverifyToken,
+        getUserDetailInfo
 
 
         }

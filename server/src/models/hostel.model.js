@@ -1,3 +1,5 @@
+import mongoose, {Schema} from "mongoose";
+
 const HostelSchema = new Schema({
     owner_id: {
         type: Schema.Types.ObjectId,
@@ -66,5 +68,4 @@ const HostelSchema = new Schema({
 });
 
 HostelSchema.index({ location: '2dsphere' });
-
-module.exports = mongoose.model('Hostel', HostelSchema);
+export const Hostel = mongoose.model('Hostel', HostelSchema);

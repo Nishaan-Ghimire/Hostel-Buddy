@@ -1,7 +1,7 @@
 import { asyncHandler } from '../utils/asyncHandler.js';
 
+import SearchHistory from '../models/searchHistory.model.js'
 
-const SearchHistory = require('../models/searchHistory.model.js'); // Import the SearchHistory model
 
 const SearchController = asyncHandler(async (req, res) => {
     try {

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const searchHistorySchema = new mongoose.Schema({
     user_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
@@ -6,4 +6,6 @@ const searchHistorySchema = new mongoose.Schema({
     timestamp: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('SearchHistory', searchHistorySchema);
+const SearchHistory = mongoose.model('SearchHistory', searchHistorySchema);
+
+export default SearchHistory;

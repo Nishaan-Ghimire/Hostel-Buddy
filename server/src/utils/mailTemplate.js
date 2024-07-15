@@ -1,4 +1,4 @@
-function generateEmailTemplate(title, message, username,token,otp) {
+export const generateEmailTemplate = (title, message, username,token,otp)=> {
     const htmlContent = `
 <html>     
 <head>
@@ -63,7 +63,7 @@ function generateEmailTemplate(title, message, username,token,otp) {
 }
 
 
- function generateBookingConfirmationEmail(title, username, roomNumber, hostelName, token) {
+export const generateBookingConfirmationEmail = (title, username, roomNumber, hostelName, token) =>{
   const htmlContent = `
 <html>     
 <head>
@@ -121,7 +121,7 @@ p {
 }
 
 
-function generateHostelOwnerNotificationEmail(title, adminName, username, roomNumber, hostelName) {
+export const generateHostelOwnerNotificationEmail = (title, adminName, username, roomNumber, hostelName) =>{
   const htmlContent = `
 <html>     
 <head>
@@ -201,9 +201,3 @@ p {
 
 
 
-module.exports = {
-   
-      generateBookingConfirmationEmail,
-      generateEmailTemplate,
-      generateHostelOwnerNotificationEmail
-};

@@ -13,6 +13,9 @@ import {  registerController,
     verifyToken,
     uploadCoverPicture } from '../controllers/user.controller.js';
 import {userAuthMiddleware} from '../middlewares/auth.middleware.js'
+
+import {getPopularHostels} from '../controllers/dashboard.controller.js'
+
 const router = Router();
 
 
@@ -34,6 +37,10 @@ router.route('/changePassword').patch(userAuthMiddleware,changePasswordControlle
 router.route('/updateAccountDetail').patch(userAuthMiddleware,updateAccountDetail); // Done
 router.route('/uploadProfileImage').patch(userAuthMiddleware,upload.single('profilePic'),uploadProfilePicture);
 // router.route('/uploadCoverImage').patch(userAuthMiddleware,upload.single('coverPic'),uploadCoverPicture);
+
+
+
+router.route('/dashboard').get(getPopularHostels);
 
 
 
