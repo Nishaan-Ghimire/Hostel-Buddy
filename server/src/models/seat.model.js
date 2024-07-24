@@ -1,3 +1,4 @@
+import mongoose ,{ model, Schema } from "mongoose";
 const SeatSchema = new Schema({
     room_id: {
          type: Schema.Types.ObjectId, 
@@ -18,4 +19,5 @@ const SeatSchema = new Schema({
     timeseries: true,
 });
   
-  module.exports = mongoose.model('Seat', SeatSchema);
+  const Seat = mongoose.model('Seat', SeatSchema);
+  export default Seat;

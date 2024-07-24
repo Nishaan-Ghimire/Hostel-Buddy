@@ -1,4 +1,4 @@
-const Notification = require('../models/notification.model.js'); 
+import Notification from '../models/notification.model.js'
 
 
 

@@ -12,9 +12,12 @@ import {  registerController,
     verifyOTP,
     verifyToken,
     uploadCoverPicture } from '../controllers/user.controller.js';
+
+  
 import {userAuthMiddleware} from '../middlewares/auth.middleware.js'
 
-import {getPopularHostels} from '../controllers/dashboard.controller.js'
+import {getPopularHostels,nearByHostels,getrecommendation} from '../controllers/dashboard.controller.js'
+
 
 const router = Router();
 
@@ -40,8 +43,10 @@ router.route('/uploadProfileImage').patch(userAuthMiddleware,upload.single('prof
 
 
 
-router.route('/dashboard').get(getPopularHostels);
+router.route('/popular').get(getPopularHostels); //Done
 
+router.route('/getfav/:userId').get(getrecommendation); //Done
 
+router.route('/nearby').get(nearByHostels); // Done
 
 export default router;

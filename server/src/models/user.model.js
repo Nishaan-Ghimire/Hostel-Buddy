@@ -94,8 +94,9 @@ const userSchema = new Schema(
           },
           kyc_status: {
             type: String,
-            enum:['Verified','Not Verified'],
-            default: 'Not Verified'
+            enum:['Verified','Not Verified','Pending'],
+            default: 'Not Verified',
+            required: true
           },
 
         refreshToken:{

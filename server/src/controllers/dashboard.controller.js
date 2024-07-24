@@ -1,4 +1,12 @@
-export const getPopularHostels = async () => {
+
+import axios from "axios";
+import Hostel from '../models/hostel.model.js'
+import mongoose from 'mongoose'
+import Review from '../models/review.model.js'
+
+
+
+export const getPopularHostels = async (req,res) => {
     try {
         const hostels = await Review.aggregate([
             {
@@ -40,9 +48,85 @@ export const getPopularHostels = async () => {
         ]);
 
         console.log(hostels);
-        return hostels;
+        return res.json(hostels);
     } catch (err) {
         console.error(err);
         throw err;
     }
 };
+
+export const getrecommendation = async (req, res) => {
+    const userId = req.params.userId;
+
+    try {
+        // Make a GET request to your Flask app
+        const response = await axios.get(`http://127.0.0.1:5000/recommend?user_id=${userId}`);
+        const data = JSON.parse(response.data);
+
+         // Extract hostel IDs from the recommendations
+         const hostelIds = data.recommendations;
+		console.log(hostelIds)
+         // Fetch hostel data from MongoDB
+         const hostels = await Hostel.find({
+             _id: { $in: hostelIds.map(id => new mongoose.Types.ObjectId(id)) }
+         });
+ 	console.log(hostels)
+         // Send the hostel data as JSON
+         return res.json(hostels);
+
+
+
+
+        // Send the response as JSON
+        res.json(data);
+    } catch (error) {
+        console.error('Error fetching recommendations:', error.message);
+        res.status(500).json({ error: 'Failed to fetch recommendations' });
+    }
+}
+
+
+
+
+
+
+export const nearByHostels = async (req, res) => {
+  
+    const { latitude, longitude } = req.body;
+
+    if (!latitude || !longitude) {
+        return res.status(400).json({ error: 'Latitude and longitude are required' });
+    }
+
+    try {
+        // Convert latitude and longitude to numbers
+        const lat = parseFloat(latitude);
+        const lon = parseFloat(longitude);
+
+        // Fetch nearest hostels from MongoDB with geospatial query
+        const hostels = await Hostel.aggregate([
+            {
+                $geoNear: {
+                    near: {
+                        type: "Point",
+                        coordinates: [lon, lat]
+                    },
+                    distanceField: "distance",
+                    spherical: true,
+                    query: {
+                        // Add any additional query conditions if needed
+                    }
+                }
+            },
+            {
+                $limit: 10
+            }
+        ]);
+
+        // Send the hostel data as JSON
+        return res.json(hostels);
+    } catch (error) {
+        console.error('Error fetching nearby hostels:', error.message);
+        return res.status(500).json({ error: 'Failed to fetch nearby hostels' });
+    }
+}

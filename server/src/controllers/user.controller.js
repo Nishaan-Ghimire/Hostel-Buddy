@@ -66,7 +66,7 @@ const registerController = asyncHandler(async (req, res) => {
                         if (!user) {
                                 throw new CustomError(500, "Something went wrong cannot create user")
                         }
-                        trackEvent(user._id,"User","Signups");
+                        trackEvent(user._id,"registration");
                         return res
                                 .status(201)
                                 .json(new ApiResponse(201, user, "User registered successfully"))
@@ -115,7 +115,7 @@ const loginController = asyncHandler(async (req, res) => {
                         secure: true
                 }
                 console.log(accessToken)
-                trackEvent(loginInUser._id,"User","Login in");
+                trackEvent(loggedInUser._id,"logged in");
                 return res
                         .status(200)
                         .cookie("accessToken", accessToken, options)

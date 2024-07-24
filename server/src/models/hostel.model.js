@@ -1,17 +1,15 @@
 import mongoose, {Schema} from "mongoose";
 
+
 const HostelSchema = new Schema({
     owner_id: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        // required: true
     },
-
     hostelName: { 
         type: String, 
         required: true 
     },
-
     address: { 
         type: String, 
         required: true 
@@ -44,12 +42,13 @@ const HostelSchema = new Schema({
         required: true
     },
     location: {
-        longitude: {
+        type: {
             type: String,
-            required: true
-             },
-             latitude: { 
-            type: String,
+            enum: ['Point'],
+            default: 'Point'
+        },
+        coordinates: {
+            type: [Number], // [<longitude>, <latitude>]
             required: true
         }
     },
@@ -62,10 +61,10 @@ const HostelSchema = new Schema({
         type: Boolean, 
         default: false 
     },
-   
 }, {
-    timeseries: true,
+    timestamps: true,
 });
 
 HostelSchema.index({ location: '2dsphere' });
-export const Hostel = mongoose.model('Hostel', HostelSchema);
+const Hostel = mongoose.model('Hostel', HostelSchema);
+export default Hostel

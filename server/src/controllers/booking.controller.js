@@ -1,10 +1,10 @@
 // import {HostelOwner} from '../models/hostelOwner.model';
-import {Hostel} from '../models/hostel.model.js';
-import {Booking} from '../models/booking.model.js';
-import {User} from '../models/booking.model.js';
-import {Room} from '../models/booking.model.js';
-import {Seat} from '../models/seat.model.js';
-import {Notification} from '../models/notification.model.js'
+import Hostel from '../models/hostel.model.js';
+import Booking from '../models/booking.model.js';
+import User from '../models/user.model.js';
+import Room from '../models/booking.model.js';
+import Seat from '../models/seat.model.js';
+import Notification from '../models/notification.model.js'
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { CustomError } from '../utils/ApiError.js'
 import { generateAccessAndRefreshToken,generateOTP,generateVerificationToken } from '../utils/MinorMethods.js'
@@ -217,7 +217,7 @@ if(!mailNewBookingNotificationToOwner){
 
 
 // Get all bookings
-exports.getBookings = async (req, res) => {
+const getBookings = async (req, res) => {
     try {
         const bookings = await Booking.find().populate('user_id hostel_id room_id seat_id');
         res.status(200).json(bookings);
@@ -227,7 +227,7 @@ exports.getBookings = async (req, res) => {
 };
 
 // Get a single booking by ID
-exports.getBookingById = async (req, res) => {
+const getBookingById = async (req, res) => {
     try {
         const booking = await Booking.findById(req.params.id).populate('user_id hostel_id room_id seat_id');
         if (!booking) {
@@ -240,7 +240,7 @@ exports.getBookingById = async (req, res) => {
 };
 
 // Update a booking by ID
-exports.updateBooking = async (req, res) => {
+const updateBooking = async (req, res) => {
     try {
         const { status } = req.body;
         const updatedBooking = await Booking.findByIdAndUpdate(
@@ -258,7 +258,7 @@ exports.updateBooking = async (req, res) => {
 };
 
 // Delete a booking by ID
-exports.deleteBooking = async (req, res) => {
+const deleteBooking = async (req, res) => {
     try {
         const deletedBooking = await Booking.findByIdAndDelete(req.params.id);
         if (!deletedBooking) {
@@ -273,22 +273,38 @@ exports.deleteBooking = async (req, res) => {
 
 
 
-
-const getMyAcceptedBooking = asyncHandler(async (req,res)=>{
+const getMyAcceptedBooking = asyncHandler(async (req, res) => {
     const { username } = req.body;
-
-    const acceptBookings = await Booking.find({ username: username, status: 'accepted' });
-
-    if (!acceptBookings) {
-        return res.status(404).json({ message: 'User not found' });
+  
+    try {
+      // Fetch accepted bookings
+      const acceptBookings = await Booking.find({ username: username, status: 'accepted' });
+  
+      if (acceptBookings.length === 0) {
+        return res.status(404).json({ message: 'No accepted bookings found for this user' });
       }
-
-     res.status(200).json({acceptBookings}) 
-
-})
+  
+      // Extract unique hostel IDs
+      const hostelIds = acceptBookings.map(booking => booking.hostel_id);
+      const uniqueHostelIds = [...new Set(hostelIds)]; // Remove duplicates if any
+  
+      // Fetch hostel details for these IDs
+      const hostels = await Hostel.find({ _id: { $in: uniqueHostelIds } });
+  
+      res.status(200).json({ hostels });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
 
 export {
     createBooking,
     AcceptBooking,
-    getMyAcceptedBooking
+    getMyAcceptedBooking,
+    deleteBooking,
+    updateBooking,
+    getBookingById,
+    getBookings
+    
 }

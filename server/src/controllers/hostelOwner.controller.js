@@ -1,5 +1,5 @@
 import User from '../models/user.model.js';
-import {Hostel} from '../models/hostel.model.js';
+import Hostel from '../models/hostel.model.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { CustomError } from '../utils/ApiError.js'
 import { generateAccessAndRefreshToken,generateOTP,generateVerificationToken } from '../utils/MinorMethods.js'
@@ -65,9 +65,9 @@ const HostelKYC = asyncHandler(async (req, res) => {
 
 
 const HostelInformationUpdate = asyncHandler(async (req,res)=>{
-        const {totalRooms,totalSeats,packedSeats,address,hostelName,owner_id,longitude,latitude} = req.body;
+        const {totalRooms,totalSeats,packedSeats,address,hostelName,owner_id,location} = req.body;
 
-        if(!totalRooms || !totalSeats || !packedSeats || !address || !hostelName || !owner_id || !longitude || !latitude){
+        if(!totalRooms || !totalSeats || !packedSeats || !address || !hostelName || !owner_id || !location){
                 throw new CustomError(409, "All fields are necessary");
         }
         else{
@@ -89,7 +89,7 @@ const HostelInformationUpdate = asyncHandler(async (req,res)=>{
                 if (!hostel) {
                         throw new CustomError(500, "Something went wrong cannot create user")
                 }
-                trackEvent(owner_id,"Hostel Owner","Registration");
+                trackEvent(owner_id,"vendor registration");
                 return res
                         .status(201)
                         .json(new ApiResponse(201, hostel, "Hostel registered successfully"))
@@ -132,7 +132,7 @@ const loginController = asyncHandler(async (req, res) => {
                         secure: true
                 }
                 console.log(accessToken)
-                trackEvent(loginHostelOwner._id,"Hostel Owner","Login");
+                trackEvent(loginHostelOwner._id,"vendor logged in");
                 return res
                         .status(200)
                         .cookie("accessToken", accessToken, options)

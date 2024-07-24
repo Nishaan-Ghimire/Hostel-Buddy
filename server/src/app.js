@@ -7,7 +7,7 @@ const app = express();
 // CORS configuration
 app.use(cors(
   {
-    origin: process.env.CORS_ORIGIN,
+    origin: process.env.CORS_ORIGIN || '*',
     credentials: true
   }
 ))
@@ -39,6 +39,7 @@ import vendorRoutes from './routes/hostelOwner.routes.js'
 import Review from './routes/review.routes.js'
 import Utils from './routes/utils.routes.js'
 import Bookings from './routes/booking.routes.js'
+import Admin from './routes/admin.routes.js'
 
 // Setting the routes
 app.use('/v1/users/',userRoutes);
@@ -47,6 +48,7 @@ app.use('/v1/vendor/',vendorRoutes);
 app.use('/v1/review/',Review);
 app.use('/v1/utils/',Utils);
 app.use('/v1/booking',Bookings);
+app.use('/v1/admin',Admin);
 
 
 export { app }

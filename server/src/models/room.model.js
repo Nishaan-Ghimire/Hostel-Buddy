@@ -12,4 +12,5 @@ const RoomSchema = new Schema({
   timeseries: true,
 });
 
-module.exports = mongoose.model('Room', RoomSchema);
+const Room = mongoose.model('Room', RoomSchema);
+export default Room
