@@ -22,16 +22,17 @@ import {generateBookingConfirmationEmail,generateHostelOwnerNotificationEmail} f
 // Create a new booking
 const createBooking = asyncHandler(async (req, res) => {
     try {
-        const { user_id, hostel_id, room_id, seat_id, status } = req.body;
-        
+        const { username, _id } = req.body;
+        const hostel_id = _id;
         // Validate user, hostel, room IDs
-        const user = await User.findById(user_id);
-        const hostel = await Hostel.findById(hostel_id);
-        const room = await Room.findById(room_id);
+        const user = await User.findById(username);
+        const hostel = await Hostel.findById(_id);
+        // const room = await Room.findById(room_id);
         // const seat = await Seat.findById(seat_id);
-        
-        if (!user || !hostel || !room) {
-            return res.status(400).json({ message: 'Invalid user, hostel, room, or bed ID' });
+        const addedBy = hostel.addedBy
+        reqstatus = "pending"
+        if (!user || !hostel) {
+            return res.status(400).json({ message: 'Invalid user, hostel' });
         }
    
           
@@ -42,17 +43,19 @@ const createBooking = asyncHandler(async (req, res) => {
         
         //  Creating new Booking 
         const newBooking = new Booking({
-            user_id,
-            hostel_id,
-            room_id,
-            seat_id,
-            status
+            username,
+            hostel_id:_id,
+            addedBy,
+            status:reqstatus
+            
+            // room_id,
+            // seat_id,
         });
 
   
     // Create new seat
         const newSeat = new Seat({
-                room_id,
+                // room_id,
                 hostel_id,
                 user_associate: user_id,
             })
@@ -62,8 +65,8 @@ const createBooking = asyncHandler(async (req, res) => {
             await newSeat.save();
 
         // Update the seat id to room
-            room.seats.push({ seat_id: newSeat._id });
-            await room.save();
+            // room.seats.push({ seat_id: newSeat._id });
+            // await room.save();
 
 
 // Update the no of packed seat in hostel model
@@ -87,7 +90,8 @@ const newNotificationhostelOwner = await Notification({
 
 // Sending Mail to User about Booking Confirmed
 
-const UserEmailTemplate = generateBookingConfirmationEmail("Booking Confirmed",user.fullName,room.room_number,hostel.hostelName)
+// const UserEmailTemplate = generateBookingConfirmationEmail("Booking Confirmed",user.fullName,room.room_number,hostel.hostelName)
+const UserEmailTemplate = generateBookingConfirmationEmail("Booking Confirmed",user.fullName,hostel.hostelName)
 const mailBookingNotification = await sendEmail(user.email,"Booking Confirmed",UserEmailTemplate)
         
 console.log(mailBookingNotification);
@@ -98,7 +102,8 @@ if(!mailBookingNotification){
 // Sending Mail to HostelOwner about new Booking 
 const hostelOwner = await User.findByIdAndUpdate(hostel.owner_id);
 
-const HostelOwnerEmailTemplate = generateHostelOwnerNotificationEmail("New Seat Booking",hostelOwner.fullName,user.fullName,room.room_number,hostel.hostelName)
+const HostelOwnerEmailTemplate = generateHostelOwnerNotificationEmail("New Seat Booking",hostelOwner.fullName,user.fullName,hostel.hostelName)
+// const HostelOwnerEmailTemplate = generateHostelOwnerNotificationEmail("New Seat Booking",hostelOwner.fullName,user.fullName,room.room_number,hostel.hostelName)
 const mailNewBookingNotificationToOwner = await sendEmail(hostelOwner.email,"New Seat Booking",HostelOwnerEmailTemplate)
         
 console.log(mailNewBookingNotificationToOwner);
@@ -208,10 +213,51 @@ if(!mailNewBookingNotificationToOwner){
 
 
 
+const getStatus = asyncHandler(async(req,res)=>{
+    try {
+const hostel_id=req.body.hostel_id
+      //  const {  hostel_id,username } = req.body;
+     console.log(req.body)
+     
+        const hostel = await Booking.find({hostel_id:hostel_id,});
+        //const hostel_id=_id;
+   
+        const addedBy=hostel.addedBy;
+       console.log(hostel)
+   res.status(200).json(hostel)
+     
+    
+    } catch (error) {
+        throw new CustomError(500, `Internal server error ${error}`);
+
+    }
+//res.send("send")
+})
 
 
+const checkNotification = asyncHandler(async(req,res)=>{
+    try {
+        const {  username,  } = req.body;
+     console.log(req.body)
+     const bookings = await Booking.find({addedBy:username});
+     //const hostel_id=_id;
+     const pendingBookings = bookings.filter(booking => booking.status === "pending");
 
+     if (pendingBookings.length > 0) {
+         // Do something with pending bookings, e.g., return them in the response
+         console.log(pendingBookings.map(booking => booking.addedBy));
+         return res.status(200).json(pendingBookings);
+     } else {
+         // No pending bookings found
+         return res.status(200).json({ message: "No pending bookings found" });
+     }
+ 
+    } catch (error) {
+        throw new CustomError(500, `Internal server error ${error}`);
 
+    }
+//res.send("send")
+})
 
 
 
@@ -305,6 +351,8 @@ export {
     deleteBooking,
     updateBooking,
     getBookingById,
-    getBookings
+    getBookings,
+    getStatus,
+    checkNotification
     
 }

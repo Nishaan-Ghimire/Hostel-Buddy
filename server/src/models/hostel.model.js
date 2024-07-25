@@ -18,10 +18,14 @@ const HostelSchema = new Schema({
         type: Number,
         required: true 
     },
-    totalSeats: {
-        type: Number,
-        required: true
-    },
+    noOfSeater: {
+         type: String, 
+         required: true 
+        },
+        city: { 
+            type: String, 
+            required: true 
+        },
     oneSitter:{
         type: Number
     },
@@ -31,6 +35,31 @@ const HostelSchema = new Schema({
     threeSitter:{
         type: Number
     },
+    costPerMonth: { 
+        type: String,
+         required: true 
+        },
+        photo: { 
+            type: String, 
+            required: true 
+        },
+        description: { 
+            type: String,
+             required: true },
+        facilities: { type: 
+            String, 
+            required: true
+         },
+        roomNo:{
+            type:String
+        },
+        addedBy:{
+            type:String
+        },
+        isAvailable: { 
+            type: Boolean, 
+            default: true
+        },
     fourSitter:{
         type: Number
     },
@@ -64,6 +93,13 @@ const HostelSchema = new Schema({
 }, {
     timestamps: true,
 });
+
+HostelSchema.index({ 
+    name: 'text', 
+    description: 'text', 
+    city: 'text',  // Use 'city' instead of 'location'
+    facilities: 'text' 
+  });
 
 HostelSchema.index({ location: '2dsphere' });
 const Hostel = mongoose.model('Hostel', HostelSchema);

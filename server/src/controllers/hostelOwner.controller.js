@@ -63,43 +63,78 @@ const HostelKYC = asyncHandler(async (req, res) => {
 
 // Here we also have to send the verification request to admin for hostel verification after checking documents
 
+const vendorRegister = asyncHandler(async (req, res) => {
 
-const HostelInformationUpdate = asyncHandler(async (req,res)=>{
-        const {totalRooms,totalSeats,packedSeats,address,hostelName,owner_id,location} = req.body;
+        try {
+               
+                const { fullName, username, email, phoneNo, password, hostelName, kyc_doc,pan_card,lat, long,profile_img,cover_img } = req.body;
+                if (!fullName || !dob || !username || !email || !phoneNo || !password) {
 
-        if(!totalRooms || !totalSeats || !packedSeats || !address || !hostelName || !owner_id || !location){
-                throw new CustomError(409, "All fields are necessary");
-        }
-        else{
-                const newHostel = await Hostel.create({
-                      totalRooms,
-                      totalSeats,
-                      packedSeats,
-                      address,
-                      hostelName,
-                      owner_id,
-                     
-
-                });
-
-                console.log(newHostel._id);
-           
-                const hostel = await User.findById(newHostel._id);
-
-                if (!hostel) {
-                        throw new CustomError(500, "Something went wrong cannot create user")
+                        throw new CustomError(409, "All fields are necessary");
                 }
-                trackEvent(owner_id,"vendor registration");
-                return res
-                        .status(201)
-                        .json(new ApiResponse(201, hostel, "Hostel registered successfully"))
+              
+                if(jobStatus === 'Student'){
+                        if(!college){
+                                throw new CustomError(409, "All fields are necessary");
+                        }
+                }
+               
+                if(jobStatus === 'Working'){
+                        if(!company){
+                                throw new CustomError(409, "All fields are necessary");
+                        }
+                }
+                
+                const exisitingUser = await User.findOne({
+                        $or: [{ username }, { email }, { phoneNo }]
+                })
+                console.log(exisitingUser);
+                if (exisitingUser) {
+                        res
+                                .status(409)
+                                .json({ message: "User already exist" })
+                        // throw new CustomError(409, "This user already exist")
+                } else {
 
+        console.log("All fine till here")
+                        const newUser = await User.create({
+                                fullName,
+                                dob,
+                                username,
+                                email,
+                                phoneNo,
+                                password,
+                                jobStatus,
+                                fieldOfProfession,
+                                college: {
+                                        longitude:collegelongitude,
+                                        latitude:collegelatitude
+                                    }
+                                
+
+                        })
+               
+        const newUserId = newUser._id;
+                        const user = await User.findById(newUser._id).select("-password -refreshToken");
+
+                        if (!user) {
+                                throw new CustomError(500, "Something went wrong cannot create user")
+                        }
+
+                        return res
+                                .status(201)
+                                .json(new ApiResponse(201, user, "User registered successfully"))
+
+                }
+
+
+        } catch (error) {
+                throw new CustomError(500, `Internal server error ${error}`);
         }
 
 
 
 })
-
 
 
 
@@ -487,6 +522,35 @@ const HostelOwnerverifyToken = asyncHandler(async(req,res)=>{
 })
 
 
+const hostelDetails = asyncHandler(async (req, res) => {
+        const {id,roomNo}=req.body
+         // const hosteldetail=
+        
+         
+          try {
+        //     console.log('...................................................................')
+            const hosteldetail = await Hostel.findOne({
+                 _id: id,
+                 roomNo: roomNo });
+        
+            if (!hosteldetail) {
+              return res.status(404).json({ message: 'Hostel detail not found' });
+            }
+           if(req.user)
+           {
+                   logVisit(id,req.user.id)
+
+           }else{
+                logVisit(id,"Not logged in")
+           }
+          
+            res.status(200).json(hosteldetail);
+          } catch (error) {
+            res.status(500).json({ message: error.message });
+          }
+        
+        
+        })
 
 
 
@@ -495,7 +559,7 @@ const HostelOwnerverifyToken = asyncHandler(async(req,res)=>{
 
 export {
         HostelKYC,
-        HostelInformationUpdate,
+        vendorRegister,
         loginController,
         logoutController,
         changePasswordController,
@@ -507,7 +571,8 @@ export {
         HostelOwnersendOtp,
         HostelOwnerverifyOTP,
         HostelOwnerverifyToken,
-        getUserDetailInfo
+        getUserDetailInfo,
+        hostelDetails
 
 
         }

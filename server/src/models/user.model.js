@@ -78,16 +78,19 @@ const userSchema = new Schema(
 
         HostelName: {
             type: String,
+            default: "",
          
         },
 
         kyc_documents: {
             hostel_certificate: { 
-              type: String, 
+              type: String,
+              default: "" ,
            
           },
             pan_card: {
                type: String, 
+               default: "",
       
               },  
           

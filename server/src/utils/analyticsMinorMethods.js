@@ -1,5 +1,6 @@
 // Get the number of active users within a specific date range
 import Analytics from "../models/analytics.model.js"
+import hostelOwnerAnalytics from "../models/hostelOwnerAnalytics.model.js"
 import Booking from "../models/booking.model.js"
 
 export const getActiveUsersInRange = async (startDate, endDate) => {
@@ -68,3 +69,16 @@ export const getActiveUsersInRange = async (startDate, endDate) => {
     return `${diffDays} days ago`;
   };
   
+
+
+  // Log a visit to a hostel by a specific user
+export const logVisit = async (userId,hostelId) => {
+  try { 
+      const analytics = new hostelOwnerAnalytics({ hostelId, userId });
+      await analytics.save();
+     return true;
+  } catch (error) {
+      return false;
+  }
+};
+
