@@ -11,7 +11,9 @@ import {  registerController,
     sendOtp,
     verifyOTP,
     verifyToken,
-    uploadCoverPicture } from '../controllers/user.controller.js';
+    uploadCoverPicture ,
+    getUserByUserNameWithMayBeSameUserName
+} from '../controllers/user.controller.js';
 
   
 import {userAuthMiddleware} from '../middlewares/auth.middleware.js'
@@ -41,7 +43,7 @@ router.route('/updateAccountDetail').patch(userAuthMiddleware,updateAccountDetai
 router.route('/uploadProfileImage').patch(userAuthMiddleware,upload.single('profilePic'),uploadProfilePicture);
 // router.route('/uploadCoverImage').patch(userAuthMiddleware,upload.single('coverPic'),uploadCoverPicture);
 
-
+router.route('/getUserByUserNameWithMayBeSameUserName').post(getUserByUserNameWithMayBeSameUserName)
 
 router.route('/popular').get(getPopularHostels); //Done
 

@@ -60,7 +60,7 @@ export const getrecommendation = async (req, res) => {
 
     try {
         // Make a GET request to your Flask app
-        const response = await axios.get(`http://127.0.0.1:5000/recommend?user_id=${userId}`);
+        const response = await axios.get(`http://143.110.246.160:5000/recommend?user_id=${userId}`);
         const data = JSON.parse(response.data);
 
          // Extract hostel IDs from the recommendations

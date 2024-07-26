@@ -1,0 +1,102 @@
+[
+  {
+    "user_id": "6686d188c5b0f9a9e195db4c",
+    "search_query": "Comfort Stay Hostel",
+    "timestamp": "2024-07-01T12:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db4c",
+    "search_query": "Happy Living Hostel",
+    "timestamp": "2024-07-02T13:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db4d",
+    "search_query": "Green Valley Hostel",
+    "timestamp": "2024-07-03T14:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db4d",
+    "search_query": "Sunshine Hostel",
+    "timestamp": "2024-07-04T15:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db4e",
+    "search_query": "Moonlight Hostel",
+    "timestamp": "2024-07-05T16:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db4e",
+    "search_query": "Star Hostel",
+    "timestamp": "2024-07-06T17:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db4f",
+    "search_query": "Skyline Hostel",
+    "timestamp": "2024-07-07T18:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db4f",
+    "search_query": "Oceanview Hostel",
+    "timestamp": "2024-07-08T19:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db50",
+    "search_query": "City Center Hostel",
+    "timestamp": "2024-07-09T20:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db50",
+    "search_query": "Suburban Hostel",
+    "timestamp": "2024-07-10T21:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db51",
+    "search_query": "Downtown Hostel",
+    "timestamp": "2024-07-11T22:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db51",
+    "search_query": "Uptown Hostel",
+    "timestamp": "2024-07-12T23:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db52",
+    "search_query": "Central Park Hostel",
+    "timestamp": "2024-07-13T00:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db52",
+    "search_query": "Riverside Hostel",
+    "timestamp": "2024-07-14T01:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db53",
+    "search_query": "Seaside Hostel",
+    "timestamp": "2024-07-15T02:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db53",
+    "search_query": "Lakeside Hostel",
+    "timestamp": "2024-07-16T03:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db54",
+    "search_query": "Mountain View Hostel",
+    "timestamp": "2024-07-17T04:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db54",
+    "search_query": "Forest Hostel",
+    "timestamp": "2024-07-18T05:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db55",
+    "search_query": "Desert Hostel",
+    "timestamp": "2024-07-19T06:00:00Z"
+  },
+  {
+    "user_id": "6686d188c5b0f9a9e195db55",
+    "search_query": "Island Hostel",
+    "timestamp": "2024-07-20T07:00:00Z"
+  }
+]

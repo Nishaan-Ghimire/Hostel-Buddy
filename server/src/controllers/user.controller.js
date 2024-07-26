@@ -471,7 +471,47 @@ const verifyToken = asyncHandler(async(req,res)=>{
 
 })
 
-
+const getUserByUserNameWithMayBeSameUserName = async (req, res) => {
+        const usernames = req.body.usernames; // Accepting a list of usernames
+        console.log('uuu', usernames);
+      
+        if (usernames && Array.isArray(usernames)) {
+          try {
+            // Fetch users for the unique usernames
+            const uniqueUsernames = [...new Set(usernames)];
+            const users = await User.find({ username: { $in: uniqueUsernames } });
+      
+            // Map the results back to the original usernames list, preserving duplicates
+            const usersMap = {};
+            users.forEach(user => {
+              usersMap[user.username] = user;
+            });
+      
+            // Create the result array based on the original usernames, including duplicates
+            const result = usernames.map(username => {
+              if (usersMap[username]) {
+                // Return a copy of the user object to ensure independent instances
+                return { ...usersMap[username]._doc };
+              } else {
+                return null;
+              }
+            });
+      
+            return res
+              .status(200)
+              .json(new ApiResponse(200, result, "Users Found"));
+          } catch (error) {
+            console.error('Error fetching users:', error);
+            return res
+              .status(500)
+              .json(new ApiResponse(500, null, "Internal Server Error"));
+          }
+        }
+      
+        return res
+          .status(400)
+          .json(new ApiResponse(400, null, "Invalid input, expected a list of usernames"));
+      };
 
 
 export {
@@ -486,7 +526,8 @@ export {
         refreshAccessToken,
         sendOtp,
         verifyOTP,
-        verifyToken
+        verifyToken,
+        getUserByUserNameWithMayBeSameUserName
 }
 
 

@@ -1,0 +1,326 @@
+[
+  {
+    "user_id": "60d5ec49c2de4f4358c1f9c9",
+    "hostel_id": "60d5ecb8c2de4f4358c1f9ca",
+    "star_rating": 5,
+    "comment": "Great hostel with excellent facilities.",
+    "createdAt": "2023-01-15T00:00:00Z"
+  },
+  {
+    "user_id": "60d5ec49c2de4f4358c1f9c9",
+    "hostel_id": "60d5ecc7c2de4f4358c1f9cb",
+    "star_rating": 4,
+    "comment": "Good experience overall.",
+    "createdAt": "2023-02-20T00:00:00Z"
+  },
+  {
+    "user_id": "60d5ec4bc2de4f4358c1f9cc",
+    "hostel_id": "60d5ecb8c2de4f4358c1f9ca",
+    "star_rating": 3,
+    "comment": "Average facilities but good location.",
+    "createdAt": "2023-03-25T00:00:00Z"
+  },
+  {
+    "user_id": "60d5ec4bc2de4f4358c1f9cc",
+    "hostel_id": "60d5ecc7c2de4f4358c1f9cb",
+    "star_rating": 5,
+    "comment": "Excellent service and friendly staff.",
+    "createdAt": "2023-04-30T00:00:00Z"
+  },
+  {
+    "user_id": "60f8ff234a4b5e23c0f8e001",
+    "hostel_id": "60f8ff234a4b5e23c0f8e567",
+    "star_rating": 4,
+    "comment": "Great hostel with a beautiful view of the lake.",
+    "createdAt": "2023-06-15T10:30:00Z"
+  },
+  {
+    "user_id": "60f900234a4b5e23c0f8e002",
+    "hostel_id": "60f900234a4b5e23c0f8e678",
+    "star_rating": 5,
+    "comment": "Amazing experience! Highly recommended.",
+    "createdAt": "2023-05-20T14:00:00Z"
+  },
+  {
+    "user_id": "60f901234a4b5e23c0f8e003",
+    "hostel_id": "60f901234a4b5e23c0f8e789",
+    "star_rating": 3,
+    "comment": "Good place but could be cleaner.",
+    "createdAt": "2023-04-10T09:00:00Z"
+  },
+  {
+    "user_id": "60f902234a4b5e23c0f8e004",
+    "hostel_id": "60f902234a4b5e23c0f8e890",
+    "star_rating": 2,
+    "comment": "Not very satisfied with the service.",
+    "createdAt": "2023-03-25T16:30:00Z"
+  },
+  {
+    "user_id": "60f903234a4b5e23c0f8e005",
+    "hostel_id": "60f903234a4b5e23c0f8e901",
+    "star_rating": 4,
+    "comment": "Comfortable and convenient location.",
+    "createdAt": "2023-06-01T12:00:00Z"
+  },
+  {
+    "user_id": "60f904234a4b5e23c0f8e006",
+    "hostel_id": "60f904234a4b5e23c0f8e012",
+    "star_rating": 5,
+    "comment": "Best hostel I've stayed at!",
+    "createdAt": "2023-05-15T18:00:00Z"
+  },
+  {
+    "user_id": "60f905234a4b5e23c0f8e007",
+    "hostel_id": "60f905234a4b5e23c0f8e123",
+    "star_rating": 3,
+    "comment": "Decent hostel but a bit pricey.",
+    "createdAt": "2023-04-05T15:30:00Z"
+  },
+  {
+    "user_id": "60f906234a4b5e23c0f8e008",
+    "hostel_id": "60f906234a4b5e23c0f8e234",
+    "star_rating": 4,
+    "comment": "Friendly staff and clean rooms.",
+    "createdAt": "2023-03-20T13:00:00Z"
+  },
+  {
+    "user_id": "60f907234a4b5e23c0f8e009",
+    "hostel_id": "60f907234a4b5e23c0f8e345",
+    "star_rating": 2,
+    "comment": "Not worth the money.",
+    "createdAt": "2023-06-10T11:00:00Z"
+  },
+  {
+    "user_id": "60f908234a4b5e23c0f8e010",
+    "hostel_id": "60f908234a4b5e23c0f8e456",
+    "star_rating": 5,
+    "comment": "Excellent facilities and location!",
+    "createdAt": "2023-05-25T17:30:00Z"
+  },
+  {
+    "user_id": "60f8ff234a4b5e23c0f8e001",
+    "hostel_id": "60f8ff234a4b5e23c0f8e567",
+    "star_rating": 4,
+    "comment": "Nice place with good amenities.",
+    "createdAt": "2023-06-20T10:00:00Z"
+  },
+  {
+    "user_id": "60f900234a4b5e23c0f8e002",
+    "hostel_id": "60f900234a4b5e23c0f8e678",
+    "star_rating": 5,
+    "comment": "Loved the atmosphere and the people.",
+    "createdAt": "2023-05-22T14:30:00Z"
+  },
+  {
+    "user_id": "60f901234a4b5e23c0f8e003",
+    "hostel_id": "60f901234a4b5e23c0f8e789",
+    "star_rating": 3,
+    "comment": "Okay experience overall.",
+    "createdAt": "2023-04-12T09:30:00Z"
+  },
+  {
+    "user_id": "60f902234a4b5e23c0f8e004",
+    "hostel_id": "60f902234a4b5e23c0f8e890",
+    "star_rating": 2,
+    "comment": "Could be better maintained.",
+    "createdAt": "2023-03-27T17:00:00Z"
+  },
+  {
+    "user_id": "60f903234a4b5e23c0f8e005",
+    "hostel_id": "60f903234a4b5e23c0f8e901",
+    "star_rating": 4,
+    "comment": "Enjoyed my stay, would come again.",
+    "createdAt": "2023-06-03T12:30:00Z"
+  },
+  {
+    "user_id": "60f904234a4b5e23c0f8e006",
+    "hostel_id": "60f904234a4b5e23c0f8e012",
+    "star_rating": 5,
+    "comment": "Absolutely fantastic!",
+    "createdAt": "2023-05-17T18:30:00Z"
+  },
+  {
+    "user_id": "60f905234a4b5e23c0f8e007",
+    "hostel_id": "60f905234a4b5e23c0f8e123",
+    "star_rating": 3,
+    "comment": "Good, but can improve on service.",
+    "createdAt": "2023-04-07T16:00:00Z"
+  },
+  {
+    "user_id": "60f906234a4b5e23c0f8e008",
+    "hostel_id": "60f906234a4b5e23c0f8e234",
+    "star_rating": 4,
+    "comment": "Nice place to stay.",
+    "createdAt": "2023-03-22T14:00:00Z"
+  },
+  {
+    "user_id": "60f907234a4b5e23c0f8e009",
+    "hostel_id": "60f907234a4b5e23c0f8e345",
+    "star_rating": 2,
+    "comment": "Not very clean.",
+    "createdAt": "2023-06-12T11:30:00Z"
+  },
+  {
+    "user_id": "60f908234a4b5e23c0f8e010",
+    "hostel_id": "60f908234a4b5e23c0f8e456",
+    "star_rating": 5,
+    "comment": "Wonderful experience!",
+    "createdAt": "2023-05-27T18:00:00Z"
+  },
+  {
+    "user_id": "60f8ff234a4b5e23c0f8e001",
+    "hostel_id": "60f8ff234a4b5e23c0f8e567",
+    "star_rating": 4,
+    "comment": "Great hostel with a beautiful view of the lake.",
+    "createdAt": "2023-06-15T10:30:00Z"
+  },
+  {
+    "user_id": "60f900234a4b5e23c0f8e002",
+    "hostel_id": "60f900234a4b5e23c0f8e678",
+    "star_rating": 5,
+    "comment": "Amazing experience! Highly recommended.",
+    "createdAt": "2023-05-20T14:00:00Z"
+  },
+  {
+    "user_id": "60f901234a4b5e23c0f8e003",
+    "hostel_id": "60f901234a4b5e23c0f8e789",
+    "star_rating": 3,
+    "comment": "Good place but could be cleaner.",
+    "createdAt": "2023-04-10T09:00:00Z"
+  },
+  {
+    "user_id": "60f902234a4b5e23c0f8e004",
+    "hostel_id": "60f902234a4b5e23c0f8e890",
+    "star_rating": 2,
+    "comment": "Not very satisfied with the service.",
+    "createdAt": "2023-03-25T16:30:00Z"
+  },
+  {
+    "user_id": "60f903234a4b5e23c0f8e005",
+    "hostel_id": "60f903234a4b5e23c0f8e901",
+    "star_rating": 4,
+    "comment": "Comfortable and convenient location.",
+    "createdAt": "2023-06-01T12:00:00Z"
+  },
+  {
+    "user_id": "60f904234a4b5e23c0f8e006",
+    "hostel_id": "60f904234a4b5e23c0f8e012",
+    "star_rating": 5,
+    "comment": "Best hostel I've stayed at!",
+    "createdAt": "2023-05-15T18:00:00Z"
+  },
+  {
+    "user_id": "60f905234a4b5e23c0f8e007",
+    "hostel_id": "60f905234a4b5e23c0f8e123",
+    "star_rating": 3,
+    "comment": "Decent hostel but a bit pricey.",
+    "createdAt": "2023-04-05T15:30:00Z"
+  },
+  {
+    "user_id": "60f906234a4b5e23c0f8e008",
+    "hostel_id": "60f906234a4b5e23c0f8e234",
+    "star_rating": 4,
+    "comment": "Friendly staff and clean rooms.",
+    "createdAt": "2023-03-20T13:00:00Z"
+  },
+  {
+    "user_id": "60f907234a4b5e23c0f8e009",
+    "hostel_id": "60f907234a4b5e23c0f8e345",
+    "star_rating": 2,
+    "comment": "Not worth the money.",
+    "createdAt": "2023-06-10T11:00:00Z"
+  },
+  {
+    "user_id": "60f908234a4b5e23c0f8e010",
+    "hostel_id": "60f908234a4b5e23c0f8e456",
+    "star_rating": 5,
+    "comment": "Excellent facilities and location!",
+    "createdAt": "2023-05-25T17:30:00Z"
+  },
+  {
+    "user_id": "60f8ff234a4b5e23c0f8e001",
+    "hostel_id": "60f8ff234a4b5e23c0f8e567",
+    "star_rating": 4,
+    "comment": "Nice place with good amenities.",
+    "createdAt": "2023-06-20T10:00:00Z"
+  },
+  {
+    "user_id": "60f900234a4b5e23c0f8e002",
+    "hostel_id": "60f900234a4b5e23c0f8e678",
+    "star_rating": 5,
+    "comment": "Loved the atmosphere and the people.",
+    "createdAt": "2023-05-22T14:30:00Z"
+  },
+  {
+    "user_id": "60f901234a4b5e23c0f8e003",
+    "hostel_id": "60f901234a4b5e23c0f8e789",
+    "star_rating": 3,
+    "comment": "Okay experience overall.",
+    "createdAt": "2023-04-12T09:30:00Z"
+  },
+  {
+    "user_id": "60f902234a4b5e23c0f8e004",
+    "hostel_id": "60f902234a4b5e23c0f8e890",
+    "star_rating": 2,
+    "comment": "Could be better maintained.",
+    "createdAt": "2023-03-27T17:00:00Z"
+  },
+  {
+    "user_id": "60f903234a4b5e23c0f8e005",
+    "hostel_id": "60f903234a4b5e23c0f8e901",
+    "star_rating": 4,
+    "comment": "Enjoyed my stay, would come again.",
+    "createdAt": "2023-06-03T12:30:00Z"
+  },
+  {
+    "user_id": "60f904234a4b5e23c0f8e006",
+    "hostel_id": "60f904234a4b5e23c0f8e012",
+    "star_rating": 5,
+    "comment": "Absolutely fantastic!",
+    "createdAt": "2023-05-17T18:30:00Z"
+  },
+  {
+    "user_id": "60f905234a4b5e23c0f8e007",
+    "hostel_id": "60f905234a4b5e23c0f8e123",
+    "star_rating": 3,
+    "comment": "Good, but can improve on service.",
+    "createdAt": "2023-04-07T16:00:00Z"
+  },
+  {
+    "user_id": "60f906234a4b5e23c0f8e008",
+    "hostel_id": "60f906234a4b5e23c0f8e234",
+    "star_rating": 4,
+    "comment": "Nice place to stay.",
+    "createdAt": "2023-03-22T14:00:00Z"
+  },
+  {
+    "user_id": "60f907234a4b5e23c0f8e009",
+    "hostel_id": "60f907234a4b5e23c0f8e345",
+    "star_rating": 2,
+    "comment": "Not very clean.",
+    "createdAt": "2023-06-12T11:30:00Z"
+  },
+  {
+    "user_id": "60f908234a4b5e23c0f8e010",
+    "hostel_id": "60f908234a4b5e23c0f8e456",
+    "star_rating": 5,
+    "comment": "Wonderful experience!",
+    "createdAt": "2023-05-27T18:00:00Z"
+  },
+
+  
+  {
+    "user_id": "60f909234a4b5e23c0f8e011",
+    "hostel_id": "60f907234a4b5e23c0f8e345",
+    "star_rating": 4,
+    "comment": "Clean rooms and helpful staff.",
+    "createdAt": "2023-07-01T13:00:00Z"
+  },
+  {
+    "user_id": "60f90a234a4b5e23c0f8e012",
+    "hostel_id": "60f906234a4b5e23c0f8e234",
+    "star_rating": 3,
+    "comment": "Average experience, could be better.",
+    "createdAt": "2023-06-29T12:00:00Z"
+  }
+]
