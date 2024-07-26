@@ -42,6 +42,102 @@ const bookingController = asyncHandler(async(req,res)=>{
     }
 
 })
+
+
+
+// Accept the booking
+
+const AcceptBooking = asyncHandler(async (req, res) => {
+    try {
+        
+        // const { user_id, hostel_id, room_id, seat_id, status } = req.body;
+        const { username, hostel_id } = req.body;
+        const newStatus = "Accepted"
+        // Validate user, hostel, room, and bed IDs
+        const user = await User.findOne({username});
+        const hostel = await Hostel.findById(hostel_id);
+        // const room = await Room.findById(room_id);
+        // const seat = await Seat.findById(seat_id);
+        const userId = user._id;
+        if (!user || !hostel) {
+            return res.status(400).json({ message: 'Invalid user or  hostel' });
+        }
+        
+        const updatedBooking = await Booking.findOneAndUpdate(
+            { username, hostelId },
+            { $set: { status: newStatus } },
+            { new: true } // This option returns the updated document
+          );
+        
+
+        
+        
+
+        if (!updatedBooking) {
+            console.log(`Booking with ID ${bookingId} not found.`);
+            return null;
+        }
+
+
+            await updatedBooking.save();
+            
+
+
+
+
+// Notify to Hostel owner and user through Notification
+
+//For user
+const newNotification = await Notification({
+                message: `You Booking request been Accepted ${hostel.hostelName} `,
+                userId
+            })
+
+
+// For HostelOwner
+const newNotificationhostelOwner = await Notification({
+    message: `The Accept request has been send to ${user.fullName}`,
+    user_id: hostel.owner_id
+})
+
+
+// Sending Mail to User about Booking Confirmed
+
+const UserEmailTemplate = generateBookingConfirmationEmail("Booking Accepted By Hostel",user.fullName,hostel.hostelName)
+const mailBookingNotification = await sendEmail(user.email,"Booking Accepted By Hostel",UserEmailTemplate)
+        
+console.log(mailBookingNotification);
+if(!mailBookingNotification){
+  throw new CustomError(500,"Internal Server Error");
+}
+          
+// Sending Mail to HostelOwner about new Booking 
+const hostelOwner = await User.findByIdAndUpdate(hostel.owner_id);
+
+const HostelOwnerEmailTemplate = generateHostelOwnerNotificationEmail("New Seat Booking",hostelOwner.fullName,user.fullName,hostel.hostelName)
+const mailNewBookingNotificationToOwner = await sendEmail(hostelOwner.email,"New Seat Booking",HostelOwnerEmailTemplate)
+        
+console.log(mailNewBookingNotificationToOwner);
+if(!mailNewBookingNotificationToOwner){
+  throw new CustomError(500,"Internal Server Error");
+}
+
+
+
+
+        res.status(201).json(savedBooking);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+)
+
+
+
+
+
+
+
 const getStatus = asyncHandler(async(req,res)=>{
     try {
 const hostel_id=req.body.hostel_id
@@ -62,6 +158,17 @@ const hostel_id=req.body.hostel_id
     }
 //res.send("send")
 })
+
+
+
+
+
+
+
+
+
+
+
 //send notification
 const checkNotification = asyncHandler(async(req,res)=>{
     try {
@@ -118,7 +225,7 @@ try {
 
 })
 export {
-    bookingController,getStatus,checkNotification,getMyAcceptedBooking
+    bookingController,getStatus,checkNotification,getMyAcceptedBooking,AcceptBooking
 
 }
 //export default bookingController;

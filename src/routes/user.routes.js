@@ -20,7 +20,7 @@ import {  registerController,
 import {userAuthMiddleware} from '../middlewares/auth.middleware.js'
 import {nearByHostels,getrecommendation,getPopularHostels} from '../controllers/dashboard.controller.js'
 //import {bookingController} from '../controllers/booking.controller.js';
-import {bookingController,checkNotification,getStatus,getMyAcceptedBooking} from '../controllers/booking.controller.js';
+import {bookingController,checkNotification,getStatus,getMyAcceptedBooking,AcceptBooking} from '../controllers/booking.controller.js';
 import hostelDetails from '../controllers/hostel_detail.js'
 
 import {message,addMessage} from '../controllers/message.js';
@@ -66,6 +66,7 @@ router.route('/getStatus').post(getStatus);
 router.route('/checkNotification').post(checkNotification); 
 router.route('/getUserByUserName').post(getUserByUserName); 
 router.route('/requestAction').post(requestAction); 
+router.route('/acceptbooking').post(AcceptBooking)
 router.route('/checkUserNotification').post(checkUserNotification); 
 router.route('/hel').post(async (req, res) =>{
 res.send("kk")
