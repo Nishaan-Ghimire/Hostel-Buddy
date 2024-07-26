@@ -29,7 +29,7 @@ router.get('/analytics/booking-details',userAccessControl, getBookingDetails);
 
 // Additional routes based on the other functions
 router.get('/verification-requests',userAccessControl, getAllVerificationRequest);
-router.post('/verify-hostel/:id',userAccessControl, verifyHostel);
+router.post('/verify-hostel',userAccessControl, verifyHostel);
 router.post('/recover-account',userAccessControl, RecoverAccount);
 router.get('/accounts',userAccessControl, allAccounts);
 router.get('/user-detail/:id',userAccessControl, getUserDetailsById);

@@ -31,7 +31,7 @@ export const getAllVerificationRequest = asyncHandler(async (req, res) => {
 
 
 export const verifyHostel = asyncHandler(async(req,res)=>{
-    const { user_id } = req.body;
+    const { user_id,status } = req.body;
     
     
   try {
@@ -39,6 +39,15 @@ export const verifyHostel = asyncHandler(async(req,res)=>{
     if(!user){
       res.json(new ApiResponse(200,"This Application doesn't exist"));
     }
+    
+    if(status==='Accept'){
+    	  const updatedUser = await User.findByIdAndUpdate(user._id,{kyc_status: 'Verified'});
+    }else{
+	const updatedUser = await User.findByIdAndUpdate(user._id,{
+	kyc_status: 'Not Verified',
+	role: 'User'
+	});
+}
     
     const updatedUser = await User.findByIdAndUpdate(user._id,{kyc_status: 'Verified'});
 
