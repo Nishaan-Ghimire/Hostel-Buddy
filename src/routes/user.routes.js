@@ -16,6 +16,7 @@ import {  registerController,
     //testEndpoint
     //,propertyDetails
  } from '../controllers/user.controller.js';
+ import {getHostelAnalytics } from "../controllers/hostelOwnerAnalytics.js"
 import {userAuthMiddleware} from '../middlewares/auth.middleware.js'
 import {nearByHostels,getrecommendation,getPopularHostels} from '../controllers/dashboard.controller.js'
 //import {bookingController} from '../controllers/booking.controller.js';
