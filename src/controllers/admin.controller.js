@@ -6,8 +6,12 @@ import hostelModel from '../models/recent_hostel_model.js';
 import Analytics from '../models/analytics.model.js'
 import Booking from '../models/booking.model.js'
 import {getActiveUsersInRange,getBookingsInRange,getMonthDateRange,getDaysAgo} from '../utils/analyticsMinorMethods.js'
-import  {generateAccessAndRefreshToken}  from '../utils/MinorMethods.js';
+import  {generateAccessAndRefreshToken,generateRandomPassword}  from '../utils/MinorMethods.js';
 import adminNotification from '../models/adminNotification.model.js'
+import {generatePasswordRecoveryEmail} from "../utils/mailTemplate.js"
+import {sendEmail} from '../utils/mail.js'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 export const getAllVerificationRequest = asyncHandler(async (req, res) => {
   try {
@@ -72,19 +76,33 @@ export const allAccounts = asyncHandler(async (req,res)=>{
   })
 
 
-
-export const RecoverAccount = asyncHandler(async (req,res)=>{
-  const {user_id, email, password} = req.body;
-  try {
-    const updatedUser = await User.findByIdAndUpdate(user_id,{password});
-    if(!updatedUser){
-      res.json(new ApiResponse(200,"User doesn't exist"));
-    }
-    res.json(new ApiResponse(200,"Successfully Updated"));
-  } catch (error) {
+  export const RecoverAccount = asyncHandler(async (req, res) => {
+    const { user_id } = req.body;
+    console.log(user_id)
     
-  }
-})
+    try {
+      // Generate a random password
+      const newPassword = generateRandomPassword();
+      const hashpassword = await bcrypt.hash(newPassword, 10);
+      // Update the user's password
+      const updatedUser = await User.findByIdAndUpdate(user_id, { password: hashpassword }, { new: true });
+  
+      if (!updatedUser) {
+        return res.json(new ApiResponse(404, "User doesn't exist"));
+      }
+  
+      // Generate the password recovery email content
+      const emailContent = generatePasswordRecoveryEmail(updatedUser.username, newPassword);
+  
+      // Send the email
+      await sendEmail(updatedUser.email, 'Password Recovery', emailContent);
+  
+      res.json(new ApiResponse(200, "Password successfully updated and email sent."));
+    } catch (error) {
+      console.error('Error during account recovery:', error);
+      res.status(500).json(new ApiResponse(500, "An error occurred while recovering the account."));
+    }
+  });
 
 
 
