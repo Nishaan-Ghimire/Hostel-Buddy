@@ -737,6 +737,7 @@ const getSuggested = asyncHandler(async (req, res) => {
 
 const addProperty=asyncHandler(async (req,res)=>{
         try {
+                
                 const properties = req.body;
                 const insertedProperties = await Hostel.insertMany(properties);
                 res.status(201).json({

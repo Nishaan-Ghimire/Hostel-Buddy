@@ -69,15 +69,15 @@ router.route('/checkUserNotification').post(checkUserNotification);
 router.route('/hel').post(async (req, res) =>{
 res.send("kk")
 })
+
 //router.route('tes').get()
 router.route('/getReview/:hostel_id').get(getReviewsByHostel); 
 router.route('/createReview').post(createReview); 
 router.route('/updateReview').post(updateReview); 
 router.route('/getMyAcceptedBooking').post(getMyAcceptedBooking)
 router.route('/getUserByUserNameWithMayBeSameUserName').post(getUserByUserNameWithMayBeSameUserName)
+router.route('/getHostelAnalytics').get(getHostelAnalytics);
 router.route('/popular').get(getPopularHostels); //Done
-
 router.route('/getfav/:userName').get(getrecommendation); //Done
-
 router.route('/nearby').get(nearByHostels); // Done
 export default router;
