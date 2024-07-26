@@ -260,3 +260,123 @@ p {
 
   return htmlContent;
 }
+
+
+export const generateKYCVerificationSuccessEmail = (username, hostelName) => {
+  const htmlContent = `
+<html>     
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KYC Verification Success</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #333;
+}
+
+p {
+  color: #666;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 3px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Congratulations!</h1>
+  <p>Hello ${username},</p>
+  <p>We are pleased to inform you that your KYC documents for ${hostelName} have been successfully verified.</p>
+  <p>Your account is now fully verified and you can proceed with all the services and features we offer.</p>
+  <p>If you have any questions or need further assistance, feel free to reach out to our support team.</p>
+  <p>Thank you for your patience and cooperation.</p>
+  <p>Best Regards,<br/>The Hostel Buddy Team</p>
+</div>
+</body>
+</html>
+  `;
+
+  return htmlContent;
+}
+
+
+export const generateKYCVerificationFailureEmail = (username) => {
+  const htmlContent = `
+<html>     
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KYC Verification Failure</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #333;
+}
+
+p {
+  color: #666;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 3px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Action Required</h1>
+  <p>Hello ${username},</p>
+  <p>We regret to inform you that your KYC documents could not be verified due to unclear images or missing information.</p>
+  <p>Please reupload your KYC documents through our mobile app</p>
+  <p>If you need assistance or have any questions, please reach out to our support team.</p>
+  <p>We appreciate your cooperation and understanding.</p>
+  <p>Best Regards,<br/>The Hostel Buddy Team</p>
+</div>
+</body>
+</html>
+  `;
+
+  return htmlContent;
+}

@@ -23,7 +23,7 @@ const registerController = asyncHandler(async (req, res) => {
                          college, company,jobStatus,collegelongitude, 
                          collegelatitude,fieldOfProfession,
                         hostelName,pan_card,
-                        kyc_doc,role } = req.body;
+                        kyc_doc,role,gender } = req.body;
                 if (!fullName || !dob || !username || !email || !phoneNo || !password) {
 
                         throw new CustomError(409, "All fields are necessary");
@@ -60,6 +60,7 @@ const registerController = asyncHandler(async (req, res) => {
                                 dob,
                                 username,
                                 email,
+                                gender,
                                 phoneNo,
                                 password,
                                 jobStatus,

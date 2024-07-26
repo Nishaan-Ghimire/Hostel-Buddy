@@ -18,6 +18,9 @@ const userSchema = new Schema(
             required: true,
         
         },
+        gender: {
+            type: String
+        },
         phoneNo: {
             type: String,
             required: true

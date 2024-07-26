@@ -8,7 +8,7 @@ import Booking from '../models/booking.model.js'
 import {getActiveUsersInRange,getBookingsInRange,getMonthDateRange,getDaysAgo} from '../utils/analyticsMinorMethods.js'
 import  {generateAccessAndRefreshToken,generateRandomPassword}  from '../utils/MinorMethods.js';
 import adminNotification from '../models/adminNotification.model.js'
-import {generatePasswordRecoveryEmail} from "../utils/mailTemplate.js"
+import {generatePasswordRecoveryEmail,generateKYCVerificationSuccessEmail,generateKYCVerificationFailureEmail} from "../utils/mailTemplate.js"
 import {sendEmail} from '../utils/mail.js'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
@@ -32,26 +32,38 @@ export const getAllVerificationRequest = asyncHandler(async (req, res) => {
 
 export const verifyHostel = asyncHandler(async(req,res)=>{
     const { user_id,status } = req.body;
-    
-    
+    console.log(user_id,status)
+    const verifiedStatus = true
   try {
-    const user = await User.findOne(user_id);
+    const user = await User.findById(user_id);
+    //  console.log(user)
     if(!user){
       res.json(new ApiResponse(200,"This Application doesn't exist"));
     }
     
     if(status==='Accept'){
-    	  const updatedUser = await User.findByIdAndUpdate(user._id,{kyc_status: 'Verified'});
+   
+    	  const updatedUser = await User.findByIdAndUpdate(user._id,{kyc_status: 'Verified',role: 'Vendor',verified:true});
+    	    console.log(updatedUser)
+          const emailContent = generateKYCVerificationSuccessEmail(updatedUser.username, updatedUser.hostelOwned);
+          await sendEmail(updatedUser.email, 'Congratulations for KYC Verification !!', emailContent);
     }else{
 	const updatedUser = await User.findByIdAndUpdate(user._id,{
 	kyc_status: 'Not Verified',
 	role: 'User'
 	});
+  const emailContent = generateKYCVerificationFailureEmail(updatedUser.username);
+  await sendEmail(updatedUser.email, 'Sorry, KYC Verification Failed', emailContent);
+	console.log(updatedUser)
 }
-    
-    const updatedUser = await User.findByIdAndUpdate(user._id,{kyc_status: 'Verified'});
+    // console.log("hello")
+   
 
-  } catch (error) {
+
+	res.json({message:"success"})
+	//res.json(updatedUser)
+
+  } catch (updatedUser) {
     
     throw new CustomError(500,"Internal Server Error")
   }
