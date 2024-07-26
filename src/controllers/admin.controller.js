@@ -31,7 +31,7 @@ export const getAllVerificationRequest = asyncHandler(async (req, res) => {
 
 
 export const verifyHostel = asyncHandler(async(req,res)=>{
-    const { user_id,status } = req.body;
+    const {user_id,status } = req.body;
     console.log(user_id,status)
     const verifiedStatus = true
   try {
@@ -56,12 +56,11 @@ export const verifyHostel = asyncHandler(async(req,res)=>{
   await sendEmail(updatedUser.email, 'Sorry, KYC Verification Failed', emailContent);
 	console.log(updatedUser)
 }
-    // console.log("hello")
-   
+ 
 
 
 	res.json({message:"success"})
-	//res.json(updatedUser)
+	
 
   } catch (updatedUser) {
     
