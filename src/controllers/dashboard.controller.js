@@ -1,8 +1,8 @@
 
 import axios from "axios";
-import Hostel from '../models/hostel.model.js'
+import Hostel from '../models/recent_hostel_model.js'
 import mongoose from 'mongoose'
-import Review from '../models/review.model.js'
+import Review from '../models/review-model.js'
 import User from '../models/user.model.js'
 
 
