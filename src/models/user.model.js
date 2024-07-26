@@ -105,7 +105,7 @@ const userSchema = new Schema(
         ,
         role:{
             type:String,
-            enum:["User","Admin","HostelOwner"],
+            enum:["User","Admin","Vendor"],
             default: "User"
         },
         hostel_associated: {
@@ -157,4 +157,4 @@ userSchema.methods.isValidToken = isValidToken;
 userSchema.index({ Location_Coordinates: '2dsphere' }); // Adding a 2dsphere index
 
 const User = mongoose.model('User',userSchema);
-export default User
+export default User;

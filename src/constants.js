@@ -1,1 +1,1 @@
-export const DB_Name = 'HostelBuddy'
+export const DB_Name = 'test'

@@ -53,7 +53,7 @@ const registerController = asyncHandler(async (req, res) => {
                 } else {
 
                         console.log(req.body)
-const r='User'
+//const r='User'
         console.log("All fine till here")
                         const newUser = await User.create({
                                 fullName,
@@ -68,10 +68,15 @@ const r='User'
                                         longitude:collegelongitude,
                                         latitude:collegelatitude
                                     },
+                                    kyc_documents:{
+                                        hostel_certificate: kyc_doc,
+                                        pan_card
+                                    }
+                                    ,
                                     hostelName,
                                     pan_card,
                                     kyc_doc
-                                ,
+                                ,role
                                
 
                         })

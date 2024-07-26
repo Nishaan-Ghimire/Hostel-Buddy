@@ -17,6 +17,7 @@ import {  registerController,
     //,propertyDetails
  } from '../controllers/user.controller.js';
 import {userAuthMiddleware} from '../middlewares/auth.middleware.js'
+import {nearByHostels,getrecommendation,getPopularHostels} from '../controllers/dashboard.controller.js'
 //import {bookingController} from '../controllers/booking.controller.js';
 import {bookingController,checkNotification,getStatus,getMyAcceptedBooking} from '../controllers/booking.controller.js';
 import hostelDetails from '../controllers/hostel_detail.js'
@@ -74,5 +75,9 @@ router.route('/createReview').post(createReview);
 router.route('/updateReview').post(updateReview); 
 router.route('/getMyAcceptedBooking').post(getMyAcceptedBooking)
 router.route('/getUserByUserNameWithMayBeSameUserName').post(getUserByUserNameWithMayBeSameUserName)
+router.route('/popular').get(getPopularHostels); //Done
 
+router.route('/getfav/:userName').get(getrecommendation); //Done
+
+router.route('/nearby').get(nearByHostels); // Done
 export default router;
