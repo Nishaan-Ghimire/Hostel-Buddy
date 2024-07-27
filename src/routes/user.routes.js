@@ -78,7 +78,7 @@ router.route('/createReview').post(createReview);
 router.route('/updateReview').post(updateReview); 
 router.route('/getMyAcceptedBooking').post(getMyAcceptedBooking)
 router.route('/getUserByUserNameWithMayBeSameUserName').post(getUserByUserNameWithMayBeSameUserName)
-router.route('/getHostelAnalytics').get(getHostelAnalytics);
+router.route('/getHostelAnalytics').post(getHostelAnalytics);
 router.route('/popular').get(getPopularHostels); //Done
 router.route('/getfav/:userName').get(getrecommendation); //Done
 router.route('/nearby').get(nearByHostels); // Done

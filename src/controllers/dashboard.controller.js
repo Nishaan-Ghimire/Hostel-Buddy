@@ -57,18 +57,21 @@ export const getPopularHostels = async (req,res) => {
 
 export const getrecommendation = async (req, res) => {
     const userName = req.params.userName;
-    
+    console.log(userName)
     try {
-        const user = User.findOne({username:userName});
+        const user = await User.findOne({username:userName});
+        console.log(user)
         const userId = user._id;
+        console.log(user._id)
         const gender = user.gender;
+        console.log(gender)
         // Make a GET request to your Flask app
         const response = await axios.get(`http://143.110.246.160:5000/recommend?user_id=${userId}`);
         const data = JSON.parse(response.data);
 
          // Extract hostel IDs from the recommendations
          const hostelIds = data.recommendations;
-		console.log(hostelIds)
+		// console.log(hostelIds)
          // Fetch hostel data from MongoDB
          const hostells = await Hostel.find({
             $and: [
@@ -92,7 +95,7 @@ export const getrecommendation = async (req, res) => {
 
 
         // Send the response as JSON
-        res.json(data);
+        // res.json(data);
     } catch (error) {
         console.error('Error fetching recommendations:', error.message);
         res.status(500).json({ error: 'Failed to fetch recommendations' });

@@ -1,12 +1,13 @@
 import hostelOwnerAnalytics from "../models/hostelOwnerAnalytics.model.js";
+import Hostel from "../models/recent_hostel_model.js"
 import mongoose from "mongoose";
 
 // Get analytics data for a specific hostel
 export const getHostelAnalytics = async (req, res) => {
     try {
-        const { hostelId } = req.params;
-
-        if (!mongoose.Types.ObjectId.isValid(hostelId)) {
+        const { hostelId } = req.body;
+        const hostel = await Hostel.findById(hostelId)
+        if (!hostel) {
             return res.status(400).json({ message: 'Invalid hostel ID.' });
         }
 
