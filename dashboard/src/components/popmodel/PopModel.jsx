@@ -1,7 +1,7 @@
 import React from 'react';
-import './Model.scss'; // Add your modal styles here
+import './PopModel.scss'; // Add your modal styles here
 
-const Modal = ({ isOpen, onClose, children }) => {
+const PopModel = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   return (
@@ -14,4 +14,4 @@ const Modal = ({ isOpen, onClose, children }) => {
   );
 };
 
-export default Modal;
+export default PopModel;

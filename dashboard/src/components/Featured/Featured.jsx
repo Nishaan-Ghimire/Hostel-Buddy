@@ -16,7 +16,7 @@ const Featured = ({totalUsers,weeklyActiveUsers}) => {
             </div>
             <div className="bottom">
         <div className="featuredChart">
-        <CircularProgressbar value={(weeklyActiveUsers/totalUsers)*100} text={Math.floor((weeklyActiveUsers/totalUsers)*100)+'%'} strokeWidth={5}/>
+        <CircularProgressbar value={((weeklyActiveUsers/totalUsers)*100)?((weeklyActiveUsers/totalUsers)*100):0} text={Math.floor(((weeklyActiveUsers/totalUsers)*100)?((weeklyActiveUsers/totalUsers)*100):0)+'%'} strokeWidth={5}/>
         </div>
         <p className="title">Most active users</p>
         <p className="amount">{weeklyActiveUsers}</p>
@@ -27,19 +27,19 @@ const Featured = ({totalUsers,weeklyActiveUsers}) => {
                 
             </div>
             <div className="item">
-                <div className="itemTitle">Last week</div>
-                <div className="itemResult positive">
-                    <KeyboardArrowUpIcon fontSize='small'/>
-                    <div className="resultAmount">$112.4k</div>
+                <div className="itemTitle"> Weekly Active User</div>
+                <div className="itemResult">
+                    {/* <KeyboardArrowUpIcon fontSize='small'/> */}
+                    <div className="resultAmount">{weeklyActiveUsers}</div>
                     
                 </div>
                 
             </div>
             <div className="item">
-                <div className="itemTitle">Last month</div>
-                <div className="itemResult positive">
-                    <KeyboardArrowUpIcon fontSize='small'/>
-                    <div className="resultAmount">$112.4k</div>
+                <div className="itemTitle">Monthly Active User</div>
+                <div className="itemResult">
+                    {/* <KeyboardArrowUpIcon fontSize='small'/> */}
+                    <div className="resultAmount">{weeklyActiveUsers}</div>
                     
                 </div>
                 

@@ -13,7 +13,8 @@ const Single = () => {
   const [user, setUser] = useState(null);
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [notification, setNotification] = useState('');
+  const [notificationType, setNotificationType] = useState('');
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
@@ -22,13 +23,14 @@ const Single = () => {
         if (!accessToken) {
           throw new Error('Access token is not available');
         }
-        const response = await axios.get(`http://localhost:8000/v1/admin/user-detail/${userId}`,{
+        const response = await axios.get(`https://stingray-app-ye7j7.ondigitalocean.app/v1/admin/user-detail/${userId}`,{
           headers: {
             'Authorization': `Bearer ${accessToken}`
           }
         });
         setUser(response.data.user);
         setBookings(response.data.bookings);
+
       } catch (error) {
         console.error('Error fetching user details:', error);
       } finally {
@@ -41,6 +43,42 @@ const Single = () => {
     fetchUserDetails();
   }, [userId]);
 
+
+  const handleRecoverAccount = async () => {
+    try {
+      const accessToken = localStorage.getItem('accessToken');
+      
+      if (!accessToken) {
+        throw new Error('Access token is not available');
+      }
+      
+      await axios.post('https://stingray-app-ye7j7.ondigitalocean.app/v1/admin/recover-account', 
+      { user_id: userId }, {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json',
+        }
+      });
+      
+      setNotification('Password recovery email sent successfully.');
+      setNotificationType('success');
+      setTimeout(() => {
+        setNotification('');
+        setNotificationType('');
+      }, 5000);
+    } catch (error) {
+      console.error('Error during password recovery:', error);
+      setNotification('Failed to send password recovery email.');
+      setNotificationType('error'); // Set type to error
+      setTimeout(() => {
+        setNotification('');
+        setNotificationType('');
+      }, 5000);
+    }
+  };
+
+
+
   if (loading) {
     return <><Loading/></>;
   }
@@ -50,13 +88,20 @@ const Single = () => {
       <Sidebar />
       <div className="singleContainer">
         <Navbar />
+        {notification && (
+  <div className={`notification ${notificationType} show`}>
+    {notification}
+  </div>
+)}
+
         <div className="top">
           <div className="left">
             {/* <div className="editButton">Edit</div> */}
             <h1 className="title">Information</h1>
             <div className="item">
               <img
-                src={user?.profileImage || "https://images.unsplash.com/photo-1574701148212-8518049c7b2c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwZ2lybHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"}
+                // src={"https://images.unsplash.com/photo-1574701148212-8518049c7b2c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YmVhdXRpZnVsJTIwZ2lybHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"}
+                src={"/media/profile-default.svg"}
                 alt="profile pic"
                 className='itemImg'
               />
@@ -71,23 +116,20 @@ const Single = () => {
                   <span className="itemValue">{user?.phoneNo || "N/A"}</span>
                 </div>
                 <div className="detailItem">
-                  <span className="itemKey">Age: </span>
-                  <span className="itemValue">{user?.age || "N/A"}</span>
+                  <span className="itemKey">Role: </span>
+                  <span className="itemValue">{user?.role || "N/A"}</span>
                 </div>
+             
                 <div className="detailItem">
-                  <span className="itemKey">Country: </span>
-                  <span className="itemValue">{user?.country || "N/A"}</span>
-                </div>
-                <div className="detailItem">
-                  <button className='recoverBtn'>Recover Account </button>
                   
                 </div>
+                <button className='recoverBtn' onClick={handleRecoverAccount}>Recover Account</button>
               </div>
             </div>
           </div>
-          <div className="right">
+          {/* <div className="right">
             <Chart aspect={3/1} title="Transactions Last 6 months"/>
-          </div>
+          </div> */}
         </div>
         <div className="bottom">
           <div className="title">Booking Details</div>

@@ -24,7 +24,7 @@ const Home = () => {
     if (!accessToken) {
       throw new Error('Access token is not available');
     }
-        const response = await axios.get('http://localhost:8000/v1/admin/analytics/details',{
+        const response = await axios.get('https://stingray-app-ye7j7.ondigitalocean.app/v1/admin/analytics/details',{
           headers: {
             'Authorization': `Bearer ${accessToken}`
           }

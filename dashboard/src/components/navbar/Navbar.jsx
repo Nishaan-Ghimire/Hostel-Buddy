@@ -43,7 +43,7 @@ const Navbar = () => {
              
                 <div className="item">
                 <Link to="/profile" className='sidelink'>
-               <img src="https://images.pexels.com/photos/1386599/pexels-photo-1386599.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="avatar" className='avatar' />
+               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy7nFdX1g_CVR4WyP5LgKOGytP0J8PE53_RQ&s" alt="avatar" className='avatar' />
                 
                </Link>
                </div>

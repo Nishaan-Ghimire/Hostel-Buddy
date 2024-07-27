@@ -3,11 +3,12 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import Navbar from '../../components/navbar/Navbar';
 import Chart from '../../components/chart/Chart';
 import TableList from '../../components/tablelist/TableList';
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Loading from '../../components/Loading/Loading';
-import Model from '../components/model/Model';
+import PopModel from '../popmodel/PopModel'
+
 // import { Button } from '@mui/material';
 const Verification_detail = () => {
   const { userId } = useParams();
@@ -15,6 +16,9 @@ const Verification_detail = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isModelOpen, setIsModelOpen] = useState(false);
+  const [notification, setNotification] = useState('');
+  const [notificationType, setNotificationType] = useState('');
+  const navigate = useNavigate(); // Hook for redirection
 
   const openModel = () => setIsModelOpen(true);
   const closeModel = () => setIsModelOpen(false);
@@ -26,11 +30,12 @@ const Verification_detail = () => {
         if (!accessToken) {
           throw new Error('Access token is not available');
         }
-        const response = await axios.get(`http://localhost:8000/v1/admin/user-detail/${userId}`, {
+        const response = await axios.get(`https://stingray-app-ye7j7.ondigitalocean.app/v1/admin/user-detail/${userId}`, {
           headers: {
             'Authorization': `Bearer ${accessToken}`
           }
         });
+        console.log(response.data.user)
         setUser(response.data.user);
         setBookings(response.data.bookings);
       } catch (error) {
@@ -43,7 +48,53 @@ const Verification_detail = () => {
     };
 
     fetchUserDetails();
-  }, [userId]);
+  }, [userId,notification,notificationType]);
+
+
+
+  const handleVerificationAction = async (status) => {
+    try {
+      const accessToken = localStorage.getItem('accessToken');
+      
+      if (!accessToken) {
+        throw new Error('Access token is not available');
+      }
+
+      const response = await axios.post(
+        'https://stingray-app-ye7j7.ondigitalocean.app/v1/admin/verify-hostel',
+        { user_id:userId, status },
+        {
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          }
+        }
+      );
+
+      if (response.status === 200) {
+        setNotification(`Hostel verification status updated to ${status}.`);
+        setNotificationType('success');
+        navigate('/verification-request');
+      } else {
+        throw new Error('Failed to update hostel verification status.');
+      }
+    } catch (error) {
+      console.error('Error updating verification status:', error);
+      setNotification('Failed to update hostel verification status.');
+      setNotificationType('error');
+    } finally {
+      setTimeout(() => {
+        setNotification('');
+        setNotificationType('');
+      }, 5000);
+    }
+  };
+
+
+
+
+
+
+
 
   if (loading) {
     return <><Loading /></>;
@@ -54,6 +105,11 @@ const Verification_detail = () => {
       <Sidebar />
       <div className="singleContainer">
         <Navbar />
+        {notification && (
+  <div className={`notification ${notificationType} show`}>
+    {notification}
+  </div>
+)}
         <div className="top">
           <div className="left">
             {/* <div className="editButton">Edit</div> */}
@@ -84,10 +140,9 @@ const Verification_detail = () => {
                   <span className="itemValue">{user?.kyc_status || "N/A"}</span>
                 </div>
                 <div className="detailItem">
-                  <button className='recoverBtn green'>Accept </button>
-                  <button className='recoverBtn yellow'>Reject </button>
-                  <button className='recoverBtn red'>Cancel </button>
-
+                  <button className='recoverBtn green' onClick={() => handleVerificationAction('Accept')}>Accept</button>
+                  <button className='recoverBtn yellow' onClick={() => handleVerificationAction('Reject')}>Reject</button>
+                  {/* <button className='recoverBtn red' onClick={() => handleVerificationAction('Cancel')}>Cancel</button> */}
                 </div>
               </div>
             </div>
@@ -99,16 +154,16 @@ const Verification_detail = () => {
           <div className="kyc-documents">
 
             <div className="verificationRequest">
-              <img src={"https://via.placeholder.com/400x300.png?text=KYC+Document+1"} alt="KYC Document" onClick={openModel} className="thumbnail" />
+              <img src={user?.kyc_documents.hostel_certificate ||"https://via.placeholder.com/400x300.png?text=KYC+Document+1"} alt="KYC Document" onClick={openModel} className="thumbnail" />
 
-              <Model isOpen={isModelOpen} onClose={closeModel}>
-                <img src={"https://via.placeholder.com/400x300.png?text=KYC+Document+1"} alt="KYC Document" className="fullImage" />
-              </Model>
-              <img src={"https://via.placeholder.com/400x300.png?text=KYC+Document+1"} alt="KYC Document" onClick={openModel} className="thumbnail" />
+              <PopModel isOpen={isModelOpen} onClose={closeModel}>
+                <img src={user?.kyc_documents.pan_card || "https://via.placeholder.com/400x300.png?text=KYC+Document+1"} alt="KYC Document" className="fullImage" />
+              </PopModel>
+              <img src={user?.kyc_documents.pan_card || "https://via.placeholder.com/400x300.png?text=KYC+Document+1"} alt="KYC Document" onClick={openModel} className="thumbnail" />
 
-              <Model isOpen={isModelOpen} onClose={closeModel}>
-                <img src={"https://via.placeholder.com/400x300.png?text=KYC+Document+1"} alt="KYC Document" className="fullImage" />
-              </Model>
+              <PopModel isOpen={isModelOpen} onClose={closeModel}>
+                <img src={user?.kyc_documents.pan_card || "https://via.placeholder.com/400x300.png?text=KYC+Document+1"} alt="KYC Document" className="fullImage" />
+              </PopModel>
             </div>
 
 

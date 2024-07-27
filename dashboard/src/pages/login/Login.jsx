@@ -24,7 +24,7 @@ const LoginPage = () => {
         setError('');
 
         try {
-            const response = await axios.post('http://localhost:8000/v1/admin/login', { email, password });
+            const response = await axios.post('https://stingray-app-ye7j7.ondigitalocean.app/v1/admin/login', { email, password });
             
             // Assuming response contains tokens and other user data
             const { accessToken, refreshToken } = response.data.data;

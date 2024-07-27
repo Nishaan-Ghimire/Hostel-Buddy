@@ -18,7 +18,7 @@ const VerificationRequest = () => {
     if (!accessToken) {
       throw new Error('Access token is not available');
     }
-        const response = await axios.get('http://localhost:8000/v1/admin/pendingkyc',{
+        const response = await axios.get('https://stingray-app-ye7j7.ondigitalocean.app/v1/admin/pendingkyc',{
           headers: {
             'Authorization': `Bearer ${accessToken}`
           }
@@ -82,7 +82,7 @@ const VerificationRequest = () => {
         columns={columns}
         pageSize={10}
         rowsPerPageOptions={[10]}
-        checkboxSelection
+        // checkboxSelection
       />
     </div>
   )
