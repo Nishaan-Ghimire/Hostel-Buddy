@@ -60,31 +60,31 @@ export const getrecommendation = async (req, res) => {
     console.log(userName)
     try {
         const user = await User.findOne({username:userName});
-        console.log(user)
+        // console.log(user)
         const userId = user._id;
         console.log(user._id)
         const gender = user.gender;
         console.log(gender)
         // Make a GET request to your Flask app
         const response = await axios.get(`http://143.110.246.160:5000/recommend?user_id=${userId}`);
-        const data = JSON.parse(response.data);
-
+        // const data = JSON.parse(response.data);
+        console.log(response)
          // Extract hostel IDs from the recommendations
-         const hostelIds = data.recommendations;
+        //  const hostelIds = data.recommendations;
 		// console.log(hostelIds)
          // Fetch hostel data from MongoDB
-         const hostells = await Hostel.find({
-            $and: [
-              {
-                _id: { $in: hostelIds.map(id => new mongoose.Types.ObjectId(id)) }
-              },
-              {
-                hostelType: gender 
-              }
-            ]
-          });
+        //  const hostells = await Hostel.find({
+        //     $and: [
+        //       {
+        //         _id: { $in: hostelIds.map(id => new mongoose.Types.ObjectId(id)) }
+        //       },
+        //       {
+        //         hostelType: gender 
+        //       }
+        //     ]
+        //   });
 
-          const hostels = await Hostel.find({hostelType: gender }
+          const hostels = await Hostel.find({type: gender}
             
           );
  	console.log(hostels)

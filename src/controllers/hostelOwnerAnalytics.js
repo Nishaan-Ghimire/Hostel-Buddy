@@ -6,7 +6,9 @@ import mongoose from "mongoose";
 export const getHostelAnalytics = async (req, res) => {
     try {
         const { hostelId } = req.body;
+        console.log(hostelId)
         const hostel = await Hostel.findById(hostelId)
+        console.log(hostel)
         if (!hostel) {
             return res.status(400).json({ message: 'Invalid hostel ID.' });
         }
