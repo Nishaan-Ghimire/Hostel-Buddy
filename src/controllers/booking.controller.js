@@ -13,6 +13,8 @@ import jwt from 'jsonwebtoken'
 import CustomError from '../utils/ApiError.js';
 import Hostel from '../models/recent_hostel_model.js'
 import User from '../models/user.model.js'
+// import Notify from '../models/notification.model.js'
+import {generateBookingConfirmationEmail,generateHostelOwnerNotificationEmail} from '../utils/mailTemplate.js'
 
 
 const bookingController = asyncHandler(async(req,res)=>{
@@ -52,10 +54,12 @@ const AcceptBooking = asyncHandler(async (req, res) => {
         
         // const { user_id, hostel_id, room_id, seat_id, status } = req.body;
         const { username, hostel_id } = req.body;
-        const newStatus = "Accepted"
+        console.log(username,hostel_id);
+        const newStatus = "accepted"
         // Validate user, hostel, room, and bed IDs
         const user = await User.findOne({username});
         const hostel = await Hostel.findById(hostel_id);
+        console.log(hostel)
         // const room = await Room.findById(room_id);
         // const seat = await Seat.findById(seat_id);
         const userId = user._id;
@@ -64,7 +68,7 @@ const AcceptBooking = asyncHandler(async (req, res) => {
         }
         
         const updatedBooking = await Booking.findOneAndUpdate(
-            { username, hostelId },
+            { username, hostel_id },
             { $set: { status: newStatus } },
             { new: true } // This option returns the updated document
           );
@@ -74,7 +78,7 @@ const AcceptBooking = asyncHandler(async (req, res) => {
         
 
         if (!updatedBooking) {
-            console.log(`Booking with ID ${bookingId} not found.`);
+            console.log(`Booking request for ${username} not found.`);
             return null;
         }
 
@@ -88,35 +92,35 @@ const AcceptBooking = asyncHandler(async (req, res) => {
 // Notify to Hostel owner and user through Notification
 
 //For user
-const newNotification = await Notification({
-                message: `You Booking request been Accepted ${hostel.hostelName} `,
-                userId
-            })
+// const newNotification = await Notify({
+//                 message: `You Booking request been Accepted ${hostel.hostelName} `,
+//                 userId
+//             })
 
 
 // For HostelOwner
-const newNotificationhostelOwner = await Notification({
-    message: `The Accept request has been send to ${user.fullName}`,
-    user_id: hostel.owner_id
-})
+// const newNotificationhostelOwner = await Notify({
+//     message: `The Accept request has been send to ${user.fullName}`,
+//     user_id: hostel.owner_id
+// })
 
+const hostelOwner = await User.find({username:hostel.addedBy});
 
 // Sending Mail to User about Booking Confirmed
 
 const UserEmailTemplate = generateBookingConfirmationEmail("Booking Accepted By Hostel",user.fullName,hostel.hostelName)
 const mailBookingNotification = await sendEmail(user.email,"Booking Accepted By Hostel",UserEmailTemplate)
         
-console.log(mailBookingNotification);
+console.log(user.fullName);
 if(!mailBookingNotification){
   throw new CustomError(500,"Internal Server Error");
 }
           
 // Sending Mail to HostelOwner about new Booking 
-const hostelOwner = await User.findByIdAndUpdate(hostel.owner_id);
-
+console.log("hello",user,hostelOwner)
+console.log(hostelOwner.fullName,user.fullName);
 const HostelOwnerEmailTemplate = generateHostelOwnerNotificationEmail("New Seat Booking",hostelOwner.fullName,user.fullName,hostel.hostelName)
 const mailNewBookingNotificationToOwner = await sendEmail(hostelOwner.email,"New Seat Booking",HostelOwnerEmailTemplate)
-        
 console.log(mailNewBookingNotificationToOwner);
 if(!mailNewBookingNotificationToOwner){
   throw new CustomError(500,"Internal Server Error");
