@@ -5,6 +5,7 @@ import http from 'http';
 import { Server } from 'socket.io'
 //const  Server  = import('socket.io');
 import Message from './models/message.js'
+import Hostel from '../src/models/recent_hostel_model.js'
 const app = express();
 //const server = http.createServer(app);
 //const io = new Server(server);
@@ -30,9 +31,35 @@ const app = express();
 // });
 
 
-app.get('/test',(req,res)=>{
+app.get('/test',async(req,res)=>{
 
-  res.send("ok")
+  const hostel_id='66a86322ba762817f9698268';
+  const hostel = await Hostel.findById(hostel_id);
+
+
+
+  console.log(hostel)
+
+
+  try {
+    const updatedHostel = await Hostel.findByIdAndUpdate(
+      hostel_id,
+      { $set: {isAcceptedByVendor:true} },  // Include multiple fields
+      { new: true }
+    );
+
+    if (!updatedHostel) {
+      console.log('No hostel found with the given ID.');
+      return null;
+    }
+    res.send(hostel)
+    console.log('Updated hostel:', updatedHostel);
+    return updatedHostel;
+  } catch (error) {
+    console.error('Error updating hostel by ID:', error);
+    throw error;
+  }
+  
 })
 
 //////////////////////////////////////////////////////////

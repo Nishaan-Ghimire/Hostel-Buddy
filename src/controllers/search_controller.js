@@ -21,9 +21,8 @@ const SearchController = asyncHandler(async (req, res) => {
         await searchHistory.save();
 
         // Perform the search
-        const results = await 
+        const results = await Hostel.find({ $text: { $search: squery } })
         
-        Hostel.find({ $text: { $search: squery } })
         //     { $text: { $search: squery } },
         //     { score: { $meta: 'textScore' } }
         // ).sort({ score: { $meta: 'textScore' } });

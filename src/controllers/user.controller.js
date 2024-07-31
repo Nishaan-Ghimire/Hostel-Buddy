@@ -710,7 +710,7 @@ const data = [
 const getResentlyAdded = asyncHandler(async (req, res) => {
         try {
                 // console.log(req)
-              const hostels = await Hostel.find({})
+              const hostels = await Hostel.find({isAvailable: true})
 
                 //const hostels = await Hostel.insertMany(data);
 
@@ -725,7 +725,7 @@ const getResentlyAdded = asyncHandler(async (req, res) => {
 const getSuggested = asyncHandler(async (req, res) => {
         try {
                 // console.log(req)
-                const hostels = await Hostel.find({})
+                const hostels = await Hostel.find({isAvailable: true})
 
                 // const hostels = await Hostel.insertMany(data);
                 

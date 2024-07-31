@@ -19,8 +19,9 @@ const hostelSchema = new mongoose.Schema({
   facilities: { type: String, required: true },
   roomNo:{type:String},
   addedBy:{type:String},
-  isAvailable: { type: Boolean, default: true}
-
+  isAvailable: { type: Boolean, default: true},
+  isAcceptedByVendor: { type: Boolean, default: false},
+  createdAt: { type: Date, default: Date.now }
 });
 hostelSchema.index({ 
   name: 'text', 
